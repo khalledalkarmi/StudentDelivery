@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentDelivery">
         <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".Singup"
             android:exported="false" />
         <activity
