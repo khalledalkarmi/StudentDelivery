@@ -1,12 +1,24 @@
 package com.wise.studentdelivery
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import com.wise.studentdelivery.model.Address
+import com.wise.studentdelivery.model.Car
+import com.wise.studentdelivery.model.Gender
+import com.wise.studentdelivery.model.User
+import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class Signup : AppCompatActivity() {
     lateinit var firstName: EditText
@@ -20,6 +32,7 @@ class Signup : AppCompatActivity() {
     lateinit var female: RadioButton
     lateinit var signUpButton: Button
     private val validator = Validator()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_singup)
@@ -35,7 +48,33 @@ class Signup : AppCompatActivity() {
 
         signUpButton = findViewById(R.id.signup_button)
 
-        signUpButton.setOnClickListener { v -> signUpValidator() }
+        signUpButton.setOnClickListener { v ->
+              addNewUser() }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+     fun addNewUser(){
+
+        val apiServer= RestApiServer()
+        val user = User(firstName = firstName.text.toString(),
+                lastName = lastName.text.toString(),
+                password = password.text.toString(),
+                gender = Gender.FEMALE,
+                email = email.text.toString(),
+                phoneNumber = phoneNumber.text.toString(),
+                address = Address("azarqa","amman"),
+                createdTime = null,
+                graduateYear = "2024",
+                haveCar = Car("BMW","Green","40-123456"),
+                uniName = "JU"
+            )
+
+
+        apiServer.addUser(user){
+            println(user.createdTime)
+        }
+
 
     }
 
@@ -48,7 +87,7 @@ class Signup : AppCompatActivity() {
         val passwordValid = validator.isValidPassword(password)
         val rePasswordValid = validator.isValidPassword(rePassword)
         val isPasswordMatches = validator.isMatch(password, rePassword)
-        val genderValid = validator.genderSelected(male, female)
+        val genderValid = true
         validator.isValidPhone(phoneNumber)
 
         if (!genderValid)

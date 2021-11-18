@@ -1,6 +1,8 @@
 package com.wise.studentdelivery.model
 
+import com.google.gson.annotations.SerializedName
+
 enum class Gender {
-    MALE,
-    FEMALE
+    @SerializedName("MALE") MALE,
+    @SerializedName("FEMALE")FEMALE
 }

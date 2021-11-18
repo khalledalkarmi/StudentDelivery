@@ -1,5 +1,10 @@
 package com.wise.studentdelivery.model
 
-data class Address(val country:String,val city:String) {
+import com.google.gson.annotations.SerializedName
+
+data class Address(
+    @SerializedName("country") val country: String,
+    @SerializedName("city") val city: String
+) {
 
 }

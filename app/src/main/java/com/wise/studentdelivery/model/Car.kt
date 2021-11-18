@@ -1,5 +1,11 @@
 package com.wise.studentdelivery.model
 
-data class Car(val carModel:String,val carColor:String,val carNumber:String) {
+import com.google.gson.annotations.SerializedName
+
+data class Car(
+    @SerializedName("carModel") val carModel: String,
+    @SerializedName("carColor") val carColor: String,
+    @SerializedName("carNumber")val carNumber: String
+) {
 
 }
