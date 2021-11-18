@@ -1,5 +1,5 @@
 package com.wise.studentdelivery.model
 
-data class Address(val contry:String,val city:String) {
+data class Address(val country:String,val city:String) {
 
 }
