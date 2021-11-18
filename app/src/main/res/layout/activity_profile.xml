@@ -11,55 +11,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
+        android:clickable="true"
+        android:contentDescription="@string/profile_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icons8_student_registration_100"
-        android:contentDescription="@string/profile_image" />
+        android:focusable="true" />
 
     <EditText
         android:id="@+id/user_name_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:autofillHints="username"
         android:ems="10"
         android:hint="@string/user_name"
+        android:hintTextColor="#546E7A"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        android:autofillHints="username" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <EditText
         android:id="@+id/phone_number_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:autofillHints="phone"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_profile"
-        android:autofillHints="phone" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name_profile" />
 
     <EditText
         android:id="@+id/Email_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number_profile"
-        android:autofillHints="emailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_profile" />
 
     <EditText
         android:id="@+id/university_name_profile"
@@ -68,26 +74,28 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/university"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_profile"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/Email_profile" />
 
     <EditText
         android:id="@+id/address_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:autofillHints="no"
         android:ems="10"
         android:hint="@string/address"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/university_name_profile"
-        android:autofillHints="no" />
+        app:layout_constraintTop_toBottomOf="@+id/university_name_profile" />
 
     <Button
         android:id="@+id/save_profile"
