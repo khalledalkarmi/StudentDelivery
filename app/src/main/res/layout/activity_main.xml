@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:autofillHints="emailAddress" />
 
     <EditText
         android:id="@+id/password_text"
@@ -26,19 +27,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="388dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:autofillHints="password" />
 
     <TextView
         android:id="@+id/Logo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UNI-Drive"
+        android:text="@string/uni_drive"
         android:textColor="#000000"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/email_text"
@@ -52,7 +54,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rect_rounded_button"
         android:backgroundTint="@color/white"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -65,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Don't have an account ?"
+        android:text="@string/don_t_have_an_account"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,12 +82,13 @@
         android:layout_marginBottom="12dp"
         android:clickable="true"
         android:minHeight="48dp"
-        android:text="SIGNUP"
+        android:text="@string/signup"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

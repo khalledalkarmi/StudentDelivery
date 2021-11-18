@@ -13,7 +13,7 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".Singup"
+            android:name=".Signup"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

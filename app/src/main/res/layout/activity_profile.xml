@@ -15,7 +15,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_student_registration_100" />
+        app:srcCompat="@drawable/icons8_student_registration_100"
+        android:contentDescription="@string/profile_image" />
 
     <EditText
         android:id="@+id/user_name_profile"
@@ -23,52 +24,56 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="User Name"
+        android:hint="@string/user_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        android:autofillHints="username" />
 
     <EditText
-        android:id="@+id/phone_number_porfile"
+        android:id="@+id/phone_number_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="textPersonName"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name_profile"
+        android:autofillHints="phone" />
 
     <EditText
-        android:id="@+id/Eamil_profile"
+        android:id="@+id/Email_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Eamil"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number_porfile" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_profile"
+        android:autofillHints="emailAddress" />
 
     <EditText
-        android:id="@+id/university_profile"
+        android:id="@+id/university_name_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="University"
+        android:hint="@string/university"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Eamil_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/Email_profile"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/address_profile"
@@ -76,12 +81,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Address"
+        android:hint="@string/address"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/university_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/university_name_profile"
+        android:autofillHints="no" />
 
     <Button
         android:id="@+id/save_profile"
@@ -90,7 +96,7 @@
         android:background="@drawable/rect_rounded_button"
         android:backgroundTint="#F4F1F1"
         android:hapticFeedbackEnabled="false"
-        android:text="Save"
+        android:text="@string/save"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
