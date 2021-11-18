@@ -15,7 +15,7 @@ class Signup : AppCompatActivity() {
     lateinit var email: EditText
     private lateinit var password: EditText
     lateinit var rePassword: EditText
-    lateinit var phoneNumber:EditText
+    lateinit var phoneNumber: EditText
     lateinit var male: RadioButton
     lateinit var female: RadioButton
     lateinit var signUpButton: Button
@@ -39,21 +39,22 @@ class Signup : AppCompatActivity() {
 
     }
 
-    private fun signUpValidator() {
-        validator.isValidEmail(email)
-        validator.isValidName(firstName)
-        validator.isValidName(lastName)
-        validator.isValidName(lastName)
-        validator.isValidStudentID(studentID)
-        validator.isValidPassword(password)
-        validator.isValidPassword(rePassword)
-        validator.isMatch(password, rePassword)
+    private fun signUpValidator(): Boolean {
+
+        val emailValid = validator.isValidEmail(email)
+        val firstNameValid = validator.isValidName(firstName)
+        val lastNameValid = validator.isValidName(lastName)
+        val studentIDValid = validator.isValidStudentID(studentID)
+        val passwordValid = validator.isValidPassword(password)
+        val rePasswordValid = validator.isValidPassword(rePassword)
+        val isPasswordMatches = validator.isMatch(password, rePassword)
         val genderValid = validator.genderSelected(male, female)
         validator.isValidPhone(phoneNumber)
+
         if (!genderValid)
-            Toast.makeText(this,"Please select gender",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show()
 
-
+        return emailValid && firstNameValid && lastNameValid && studentIDValid && passwordValid && rePasswordValid && isPasswordMatches && genderValid
     }
 
 
