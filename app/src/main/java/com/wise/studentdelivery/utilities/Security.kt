@@ -1,6 +1,5 @@
-package com.wise.studentdelivery.controller
+package com.wise.studentdelivery.utilities
 
-import org.jetbrains.annotations.TestOnly
 
 class Security {
     fun checkPassword(password: String): Boolean {
