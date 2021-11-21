@@ -55,7 +55,7 @@ class RestApiServer {
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
-                    onResult("User not exist")
+                    onResult(null)
                     println("$t failed in get user by email")
                 }
 
