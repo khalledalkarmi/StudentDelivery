@@ -30,9 +30,22 @@ class MainActivity : AppCompatActivity() {
         })
 
         loginButton.setOnClickListener { v ->
-
-        TODO("not implemented yet :)")
+            checkIfUserExist(email = email.text.toString())
         }
+    }
+
+    private fun checkIfUserExist (email:String):Boolean{
+        var exist= false
+        apiServer.checkIfUserExistByEmail(email = email){
+            if (it != null){
+                exist = true
+                //println(it)
+            }else{
+
+                TODO("show Toast or textView for error ")
+            }
+        }
+        return exist
     }
 
 
