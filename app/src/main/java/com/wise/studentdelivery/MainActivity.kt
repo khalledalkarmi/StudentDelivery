@@ -18,6 +18,7 @@ TODO: get password from database and compare it with entered password
  */
 class MainActivity : AppCompatActivity() {
     lateinit var signupButton: TextView
+    lateinit var forgetPasswordButton: TextView
     lateinit var email: EditText
     lateinit var password: EditText
     lateinit var loginButton: Button
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         password = findViewById(R.id.password_text)
         loginButton = findViewById(R.id.login_button)
         signupButton = findViewById(R.id.signup_button)
+        forgetPasswordButton = findViewById(R.id.forget_password_text)
         apiServer = RestApiServer()
         signupButton.setOnClickListener(View.OnClickListener { v ->
             val intent = Intent(this, Signup::class.java)
@@ -38,6 +40,11 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener { v ->
             checkIfUserExist(email = email.text.toString())
+        }
+
+        forgetPasswordButton.setOnClickListener {
+            val intent = Intent(this, ForgetPassword::class.java)
+            startActivity(intent)
         }
     }
 
