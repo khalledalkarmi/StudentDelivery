@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.wise.studentdelivery.network.RestApiServer
+import com.wise.studentdelivery.ui.ForgetPassword
+import com.wise.studentdelivery.ui.Signup
 
 /*
 TODO: add forget password

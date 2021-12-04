@@ -1,4 +1,4 @@
-package com.wise.studentdelivery
+package com.wise.studentdelivery.ui
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,17 +8,13 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Address
 import com.wise.studentdelivery.model.Car
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 class Signup : AppCompatActivity() {
     lateinit var firstName: EditText

@@ -1,7 +1,8 @@
-package com.wise.studentdelivery
+package com.wise.studentdelivery.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wise.studentdelivery.R
 
 class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
