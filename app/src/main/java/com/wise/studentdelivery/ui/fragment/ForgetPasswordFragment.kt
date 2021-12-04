@@ -32,6 +32,12 @@ class ForgetPasswordFragment : Fragment() {
     ): View {
         val view:View = inflater.inflate(R.layout.fragment_forget_password, container, false)
         // Inflate the layout for this fragment
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         forgetPasswordButton = view.findViewById(R.id.forget_password_fragment_button)
         emailAddress = view.findViewById(R.id.email_address_forget_fragment)
 
@@ -39,7 +45,6 @@ class ForgetPasswordFragment : Fragment() {
             if (emailValdir())
                 println("email valid")
         }
-        return view
     }
 
     private fun emailValdir():Boolean {
