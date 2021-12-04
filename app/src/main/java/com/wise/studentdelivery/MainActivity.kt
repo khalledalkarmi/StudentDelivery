@@ -9,6 +9,13 @@ import android.widget.EditText
 import android.widget.TextView
 import com.wise.studentdelivery.network.RestApiServer
 
+/*
+TODO: add forget password
+TODO: check if internet connected
+TODO: check if email not exist and show error in textView
+TODO: get password from database and compare it with entered password
+
+ */
 class MainActivity : AppCompatActivity() {
     lateinit var signupButton: TextView
     lateinit var email: EditText
@@ -40,9 +47,6 @@ class MainActivity : AppCompatActivity() {
             if (it != null){
                 exist = true
                 //println(it)
-            }else{
-
-                TODO("show Toast or textView for error ")
             }
         }
         return exist
