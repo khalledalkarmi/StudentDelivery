@@ -8,11 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.wise.studentdelivery.network.RestApiServer
-import com.wise.studentdelivery.ui.ForgetPassword
+import com.wise.studentdelivery.ui.ForgotPassword
 import com.wise.studentdelivery.ui.Signup
 
 /*
-TODO: add forget password
+TODO: make request to rewrite password
 TODO: check if internet connected
 TODO: check if email not exist and show error in textView
 TODO: get password from database and compare it with entered password
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         forgetPasswordButton.setOnClickListener {
-            val intent = Intent(this, ForgetPassword::class.java)
+            val intent = Intent(this, ForgotPassword::class.java)
             startActivity(intent)
         }
     }
