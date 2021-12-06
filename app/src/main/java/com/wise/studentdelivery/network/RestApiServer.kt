@@ -6,6 +6,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RestApiServer {
+
     fun addUser(userData: User, onResult: (User?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addUser(userData).enqueue(
@@ -57,6 +58,25 @@ class RestApiServer {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     onResult(null)
                     println("$t failed in get user by email")
+                }
+
+            }
+        )
+    }
+
+    fun getPIN(email: String,onResult: (String?) -> Unit) {
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.getPINCode(email).enqueue(
+            object : Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val getPIN = response.body()
+                    onResult(getPIN)
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    onResult(null)
+                    println("$t failed in get user by PIN")
+
                 }
 
             }

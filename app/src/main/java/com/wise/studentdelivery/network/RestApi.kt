@@ -15,4 +15,7 @@ interface RestApi {
 
     @GET("api/v1/users/email/{email}")
     fun checkIfUserExist(@Path("email") email: String): Call<String>
+
+    @GET("api/v1/users/pin/{email}")
+    fun getPINCode(@Path("email")email: String): Call<String>
 }

@@ -1,6 +1,7 @@
 package com.wise.studentdelivery.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,21 +9,23 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
-import kotlin.concurrent.fixedRateTimer
 
 
 /**
  * A simple [Fragment] subclass.
  * create an instance of this fragment.
  */
-class ForgetPasswordFragment : Fragment() {
+class ForgotPasswordFragment : Fragment() {
     lateinit var forgetPasswordButton:Button
     lateinit var emailAddress:EditText
     private val validator = Validator()
+    lateinit var apiServer: RestApiServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        apiServer = RestApiServer()
 
     }
 
@@ -30,10 +33,9 @@ class ForgetPasswordFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view:View = inflater.inflate(R.layout.fragment_forget_password, container, false)
         // Inflate the layout for this fragment
 
-        return view
+        return inflater.inflate(R.layout.fragment_forget_password, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,8 +44,12 @@ class ForgetPasswordFragment : Fragment() {
         emailAddress = view.findViewById(R.id.email_address_forget_fragment)
 
         forgetPasswordButton.setOnClickListener {
-            if (emailValdir())
-                println("email valid")
+            if (emailValdir()){
+                apiServer.getPIN(emailAddress.text.toString()){
+                    println(it)
+                }
+            }
+
         }
     }
 
