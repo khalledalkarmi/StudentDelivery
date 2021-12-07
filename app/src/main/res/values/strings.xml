@@ -20,5 +20,10 @@
     <string name="login">Login</string>
     <string name="forgetPassword">Forget your password?</string>
     <string name="Continue">Continue</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resend">Resend</string>
+    <string name="pin_well_expire_after_5_00_minute">Pin well expire after 5:00 minute</string>
+    <string name="enter_your_pin_code">Enter your Pin Code</string>
 
 </resources>
