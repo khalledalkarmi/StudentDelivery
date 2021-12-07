@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
@@ -48,9 +49,10 @@ class ForgotPasswordFragment : Fragment() {
             if (emailValdir()) {
                 apiServer.getPIN(emailAddress.text.toString()) {
                     println(it)
-                    if (pinValdir(it.toString())
-                    ) {
+                    if (pinValdir(it.toString())) {
+                        val bundle = bundleOf("pin_code" to it.toString())
                         parentFragmentManager.commit {
+                            pinCode.arguments= bundle
                             replace(R.id.fragmentContainerView, pinCode)
                         }
                     }
