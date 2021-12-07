@@ -11,14 +11,17 @@ import com.wise.studentdelivery.R
 
 class PinCode : Fragment() {
     lateinit var timerText: TextView
+    lateinit var pinCode: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        pinCode = requireArguments().getString("pin_code").toString()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pin_code, container, false)
     }
