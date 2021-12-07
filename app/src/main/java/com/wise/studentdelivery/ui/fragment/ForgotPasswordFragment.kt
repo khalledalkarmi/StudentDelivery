@@ -18,10 +18,10 @@ import com.wise.studentdelivery.utilities.Validator
  * create an instance of this fragment.
  */
 class ForgotPasswordFragment : Fragment() {
-    lateinit var forgetPasswordButton: Button
-    lateinit var emailAddress: EditText
+    private lateinit var forgetPasswordButton: Button
+    private lateinit var emailAddress: EditText
     private val validator = Validator()
-    lateinit var apiServer: RestApiServer
+    private lateinit var apiServer: RestApiServer
     var pinCode: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class ForgotPasswordFragment : Fragment() {
                 apiServer.getPIN(emailAddress.text.toString()) {
                     println(it)
                     if (pinValdir(it.toString())) {
-                        val bundle = bundleOf("pin_code" to it.toString())
+                        val bundle = bundleOf("pin_code" to it.toString(),"email" to emailAddress.text.toString())
                         parentFragmentManager.commit {
                             pinCode.arguments= bundle
                             replace(R.id.fragmentContainerView, pinCode)
