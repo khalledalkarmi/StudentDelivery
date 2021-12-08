@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 
@@ -22,6 +23,7 @@ class PinCode : Fragment() {
     private lateinit var confirmPinCodeButton: Button
     private lateinit var apiServer: RestApiServer
     private var isExpired: Boolean = false
+    private val setNewPassword = SetNewPassword()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,16 +69,19 @@ class PinCode : Fragment() {
 
             confirmPinCodeButton.setOnClickListener {
                 if (!isExpired) {
+
                     if (confirmPinCodeText.text.toString() != "" && confirmPinCodeText.text.toString()
                             .toInt() == pinCode.toInt()
                     ) {
                       //  println("$pinCode from confirmPinCodeButton in if ")
                         println("pin matched")
-                        //TODO: implement set new password fragment
+                            parentFragmentManager.commit {
+                                timer.cancel()
+                                replace(R.id.fragmentContainerView,setNewPassword)
+                            }
                     } else {
                         println("$pinCode not match with ${confirmPinCodeText.text.toString()}")
                     }
-
                 } else if (isExpired) {
                    // println("$pinCode from confirmPinCodeButton in else ")
                     Toast.makeText(
