@@ -82,4 +82,23 @@ class RestApiServer {
             }
         )
     }
+
+    fun updatePassword(email: String,newPassword:String,onResult: (String?) -> Unit){
+        val retrofit = ServiceBuilder.buildService((RestApi::class.java))
+        retrofit.updatePassword(email, newPassword).enqueue(
+            object :Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val updatePassword = response.body()
+                    onResult(updatePassword)
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't update password")
+
+                }
+
+            }
+        )
+    }
 }

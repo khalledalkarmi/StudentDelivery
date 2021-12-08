@@ -10,6 +10,9 @@ interface RestApi {
     @POST("api/v1/users/add")
     fun addUser(@Body user: User): Call<User>
 
+    @POST("api/v1/users/updatePassword/{email}/{newPassword}")
+    fun updatePassword(@Path("email") email: String,@Path("newPassword")newPassword:String):Call<String>
+
     @GET("api/v1/users")
     fun getAllUsers(): Call<List<User>>
 
