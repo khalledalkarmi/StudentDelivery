@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
@@ -77,6 +78,8 @@ class PinCode : Fragment() {
                         println("pin matched")
                             parentFragmentManager.commit {
                                 timer.cancel()
+                                val bundle= bundleOf("email" to email)
+                                setNewPassword.arguments=bundle
                                 replace(R.id.fragmentContainerView,setNewPassword)
                             }
                     } else {
