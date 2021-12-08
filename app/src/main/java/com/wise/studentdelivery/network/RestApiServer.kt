@@ -101,4 +101,23 @@ class RestApiServer {
             }
         )
     }
+
+    fun getUserPassword(email:String,onResult: (String?) -> Unit){
+        val retrofit = ServiceBuilder.buildService((RestApi::class.java))
+        retrofit.getUserPassword(email).enqueue(
+            object : Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val getUserPassword = response.body()
+                    onResult(getUserPassword)
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't get user password")
+
+                }
+
+            }
+        )
+    }
 }

@@ -21,4 +21,8 @@ interface RestApi {
 
     @GET("api/v1/users/pin/{email}")
     fun getPINCode(@Path("email")email: String): Call<String>
+
+    @GET("api/v1/users/getpassword/{email}")
+    fun getUserPassword(@Path("email")email: String):Call<String>
+
 }
