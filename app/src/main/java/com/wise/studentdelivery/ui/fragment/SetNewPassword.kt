@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
 
 class SetNewPassword : Fragment() {
@@ -17,9 +18,11 @@ class SetNewPassword : Fragment() {
     private lateinit var repeatNewPasswordText: EditText
     private lateinit var validator: Validator
     private lateinit var email:String
+    lateinit var apiServer: RestApiServer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         validator = Validator()
+        apiServer = RestApiServer()
     }
 
     override fun onCreateView(
@@ -44,7 +47,14 @@ class SetNewPassword : Fragment() {
                 val password = newPasswordText.text.toString()
                 val rePassword = repeatNewPasswordText.text.toString()
                 if ((password == rePassword)) {
-                    TODO("Implement setNewPasswordRequest")
+                   // TODO("Implement setNewPasswordRequest")
+                    apiServer.updatePassword(email,password){
+                       if (it == "true"){
+                           // TODO: go to signup activity
+                       }else {
+                           // TODO: handle error
+                       }
+                    }
                 } else {
                     Toast.makeText(
                         context,
