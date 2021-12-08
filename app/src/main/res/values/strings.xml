@@ -26,5 +26,10 @@
     <string name="pin_well_expire_after_5_00_minute">Pin well expire after %d:%d minute</string>
     <string name="enter_your_pin_code">Enter your Pin Code</string>
     <string name="pin_expired">pin expired please try again</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="hint_new_password">Your new password must be different from previously used password</string>
+    <string name="new_password">New Password</string>
+    <string name="repeat_new_password">Repeat new Password</string>
+    <string name="create">Create</string>
 
 </resources>
