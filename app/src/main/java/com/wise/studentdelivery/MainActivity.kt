@@ -3,7 +3,6 @@ package com.wise.studentdelivery
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -19,12 +18,12 @@ TODO: get password from database and compare it with entered password
 
  */
 class MainActivity : AppCompatActivity() {
-    lateinit var signupButton: TextView
-    lateinit var forgetPasswordButton: TextView
-    lateinit var email: EditText
-    lateinit var password: EditText
-    lateinit var loginButton: Button
-    lateinit var apiServer: RestApiServer
+    private lateinit var signupButton: TextView
+    private lateinit var forgetPasswordButton: TextView
+    private lateinit var email: EditText
+    private lateinit var password: EditText
+    private lateinit var loginButton: Button
+    private lateinit var apiServer: RestApiServer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,13 +34,19 @@ class MainActivity : AppCompatActivity() {
         signupButton = findViewById(R.id.signup_button)
         forgetPasswordButton = findViewById(R.id.forget_password_text)
         apiServer = RestApiServer()
-        signupButton.setOnClickListener(View.OnClickListener { v ->
+        signupButton.setOnClickListener{
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
-        })
+        }
 
-        loginButton.setOnClickListener { v ->
-            checkIfUserExist(email = email.text.toString())
+        loginButton.setOnClickListener {
+            val email = email.text.toString()
+            if (checkIfUserExist(email).toString().isNotEmpty()) {
+                apiServer.getUserPassword(email) {
+                    println("$it password for $email")
+                    //TODO: create request activity and goto it
+                }
+            }
         }
 
         forgetPasswordButton.setOnClickListener {
@@ -50,16 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkIfUserExist (email:String):Boolean{
-        var exist= false
-        apiServer.checkIfUserExistByEmail(email = email){
-            if (it != null){
-                exist = true
-                //println(it)
-            }
-        }
-        return exist
+    private fun checkIfUserExist(email: String) {
+        return apiServer.checkIfUserExistByEmail(email = email) {}
     }
-
-
 }
