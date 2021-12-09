@@ -17,17 +17,19 @@ import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
 
 class Signup : AppCompatActivity() {
-    lateinit var firstName: EditText
-    lateinit var lastName: EditText
-    lateinit var studentID: EditText
-    lateinit var email: EditText
+    private lateinit var firstName: EditText
+    private lateinit var lastName: EditText
+    private lateinit var studentID: EditText
+    private lateinit var email: EditText
     private lateinit var password: EditText
-    lateinit var rePassword: EditText
-    lateinit var phoneNumber: EditText
-    lateinit var male: RadioButton
-    lateinit var female: RadioButton
-    lateinit var signUpButton: Button
+    private lateinit var rePassword: EditText
+    private lateinit var phoneNumber: EditText
+    private lateinit var male: RadioButton
+    private lateinit var female: RadioButton
+    private lateinit var signUpButton: Button
+    //TODO: add gender
     private val validator = Validator()
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,29 +47,33 @@ class Signup : AppCompatActivity() {
         signUpButton = findViewById(R.id.signup_button)
 
         signUpButton.setOnClickListener { v ->
-              addNewUser() }
+            addNewUser()
+        }
 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-     fun addNewUser(){
+    fun addNewUser() {
 
-        val apiServer= RestApiServer()
-        val user = User(firstName = firstName.text.toString(),
-                lastName = lastName.text.toString(),
-                password = password.text.toString(),
-                gender = Gender.FEMALE,
-                email = email.text.toString(),
-                phoneNumber = phoneNumber.text.toString(),
-                address = Address("azarqa","amman"),
-                createdTime = null,
-                graduateYear = "2024",
-                haveCar = Car("BMW","Green","40-123456"),
-                uniName = "JU"
-            )
+        val apiServer = RestApiServer()
+        val user = User(
+            firstName = firstName.text.toString(),
+            lastName = lastName.text.toString(),
+            password = password.text.toString(),
+            gender = Gender.FEMALE, //TODO: fixme
+            email = email.text.toString(),
+            phoneNumber = phoneNumber.text.toString(),
+            address = Address("azarqa", "amman"),
+            createdTime = null,
+            graduateYear = "2024",
+            haveCar = Car("BMW", "Green", "40-1203456"),
+            uniName = "JU",
+            studentNumber = studentID.text.toString()
+
+        )
 
 
-        apiServer.addUser(user){
+        apiServer.addUser(user) {
             println(user.createdTime)
         }
 
