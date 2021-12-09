@@ -68,6 +68,8 @@ class ForgotPasswordFragment : Fragment() {
     }
 
     private fun pinValdir(pin: String): Boolean {
+        if (pin == "null")
+            return false
         if (pin.toInt() > 0) {
             pinCode = pin.toInt()
             return true
