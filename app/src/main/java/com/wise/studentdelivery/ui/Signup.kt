@@ -3,10 +3,7 @@ package com.wise.studentdelivery.ui
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Address
@@ -27,7 +24,8 @@ class Signup : AppCompatActivity() {
     private lateinit var male: RadioButton
     private lateinit var female: RadioButton
     private lateinit var signUpButton: Button
-    //TODO: add gender
+    private lateinit var genderRadioGroup: RadioGroup
+
     private val validator = Validator()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -43,6 +41,7 @@ class Signup : AppCompatActivity() {
         phoneNumber = findViewById(R.id.phone_number)
         male = findViewById(R.id.male_radioButton)
         female = findViewById(R.id.female_radioButton)
+        genderRadioGroup = findViewById(R.id.gende_rradio_group)
 
         signUpButton = findViewById(R.id.signup_button)
 
@@ -54,19 +53,20 @@ class Signup : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addNewUser() {
-
+        val checkGender = genderRadioGroup.checkedRadioButtonId
+        val gender = returnGender(checkGender)
         val apiServer = RestApiServer()
         val user = User(
             firstName = firstName.text.toString(),
             lastName = lastName.text.toString(),
             password = password.text.toString(),
-            gender = Gender.FEMALE, //TODO: fixme
+            gender = gender,
             email = email.text.toString(),
             phoneNumber = phoneNumber.text.toString(),
             address = Address("azarqa", "amman"),
             createdTime = null,
             graduateYear = "2024",
-            haveCar = Car("BMW", "Green", "40-1203456"),
+            haveCar = Car("BMW", "Green", "400-1203456"),
             uniName = "JU",
             studentNumber = studentID.text.toString()
 
@@ -98,5 +98,12 @@ class Signup : AppCompatActivity() {
         return emailValid && firstNameValid && lastNameValid && studentIDValid && passwordValid && rePasswordValid && isPasswordMatches && genderValid
     }
 
-
+    private fun returnGender(id: Int): Gender {
+        if (id == R.id.female_radioButton)
+            return Gender.FEMALE
+        if (id == R.id.male_radioButton)
+            return Gender.MALE
+        //FIXME: add null return
+        return Gender.MALE
+    }
 }
