@@ -15,8 +15,6 @@ import com.wise.studentdelivery.ui.Signup
 /*
 TODO: make request to rewrite password
 TODO: check if internet connected
-TODO: check if email not exist and show error in textView
-
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var signupButton: TextView
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         //TODO: create request activity and goto it
                         println("password ${it.toString()} is match the $email password")
                         errorText.isVisible = false
-                    }else {
+                    } else {
                         errorText.isVisible = true
                         errorText.setText(R.string.email_error)
                         errorText.setTextColor(Color.RED)
