@@ -14,7 +14,6 @@ import com.wise.studentdelivery.ui.Signup
 TODO: make request to rewrite password
 TODO: check if internet connected
 TODO: check if email not exist and show error in textView
-TODO: get password from database and compare it with entered password
 
  */
 class MainActivity : AppCompatActivity() {
@@ -34,19 +33,24 @@ class MainActivity : AppCompatActivity() {
         signupButton = findViewById(R.id.signup_button)
         forgetPasswordButton = findViewById(R.id.forget_password_text)
         apiServer = RestApiServer()
-        signupButton.setOnClickListener{
+        signupButton.setOnClickListener {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
 
         loginButton.setOnClickListener {
             val email = email.text.toString()
+            var userVerified= false
             if (checkIfUserExist(email).toString().isNotEmpty()) {
                 apiServer.getUserPassword(email) {
                     println("$it password for $email")
-                    //TODO: create request activity and goto it
+                    if (it.toString() == password.text.toString()) {
+                        //TODO: create request activity and goto it
+                        println("${it.toString()} $email")
+                    }
                 }
             }
+
         }
 
         forgetPasswordButton.setOnClickListener {
