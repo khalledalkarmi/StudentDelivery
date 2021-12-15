@@ -34,6 +34,9 @@ class Profile : AppCompatActivity() {
 
         apiServer = RestApiServer()
         //TODO: pass email to get user information
+        //TODO: implement change photo
+        //TODO: implement save button
+        //TODO: add scrollView
         apiServer.getUserByEmail("khalled_95@hotmail.com"){ user ->
             if (user != null) {
                apiServer.getImage("khalled_95@hotmail.com") {
