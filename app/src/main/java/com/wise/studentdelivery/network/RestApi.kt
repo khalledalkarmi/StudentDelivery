@@ -1,5 +1,6 @@
 package com.wise.studentdelivery.network
 
+import com.wise.studentdelivery.model.Photo
 import com.wise.studentdelivery.model.User
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -24,5 +25,8 @@ interface RestApi {
 
     @GET("api/v1/users/getpassword/{email}")
     fun getUserPassword(@Path("email")email: String):Call<String>
+
+    @GET("api/v1/users/getimage/{email}")
+    fun getImage(@Path("email") email:String):Call<Photo>
 
 }

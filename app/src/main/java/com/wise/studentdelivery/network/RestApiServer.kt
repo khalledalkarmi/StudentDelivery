@@ -1,5 +1,6 @@
 package com.wise.studentdelivery.network
 
+import com.wise.studentdelivery.model.Photo
 import com.wise.studentdelivery.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -120,4 +121,23 @@ class RestApiServer {
             }
         )
     }
+
+    fun getImage(email: String,onResult: (Photo?) -> Unit){
+        val retrofit = ServiceBuilder.buildService((RestApi::class.java))
+        retrofit.getImage(email).enqueue(
+            object : Callback<Photo>{
+                override fun onResponse(call: Call<Photo>, response: Response<Photo>) {
+                    val getImage = response.body()
+                    onResult(getImage)
+                }
+
+                override fun onFailure(call: Call<Photo>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+        )
+    }
+
+
 }
