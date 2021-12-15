@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,7 +15,7 @@ import com.wise.studentdelivery.ui.Signup
 
 /*
 TODO: make request to rewrite password
-TODO: check if internet connected
+TODO: check if internet connected by add fragment on mainActivity
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var signupButton: TextView
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     lateinit var errorText: TextView
     private lateinit var apiServer: RestApiServer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
