@@ -29,4 +29,8 @@ interface RestApi {
     @GET("api/v1/users/getimage/{email}")
     fun getImage(@Path("email") email:String):Call<Photo>
 
+    @GET("api/v1/users/{email}")
+    fun getUserByEmail(@Path("email") email: String):Call<User>
+
+
 }

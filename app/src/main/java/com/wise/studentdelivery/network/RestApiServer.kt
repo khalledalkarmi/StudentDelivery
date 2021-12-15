@@ -113,8 +113,6 @@ class RestApiServer {
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
-                    onResult(null)
-                    println("$t can't get user password")
 
                 }
 
@@ -132,9 +130,28 @@ class RestApiServer {
                 }
 
                 override fun onFailure(call: Call<Photo>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    onResult(null)
+                    println("$t can't get user image")
                 }
 
+            }
+        )
+    }
+
+    fun getUserByEmail(email: String,onResult: (User?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.getUserByEmail(email).enqueue(
+            object : Callback<User>{
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    val user = response.body()
+                    onResult(user)
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't get user by email ")
+
+                }
             }
         )
     }
