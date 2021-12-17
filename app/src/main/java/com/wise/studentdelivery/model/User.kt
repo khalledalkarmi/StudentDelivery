@@ -16,6 +16,8 @@ data class User(
     @SerializedName("address") val address: Address,
     @SerializedName("haveCar") val haveCar: Car,
     @SerializedName("createdTime") val createdTime: LocalDateTime?=null,
-    @SerializedName("photo") val photo: Photo?
+    @SerializedName("photo") val photo: Photo?,
+    @SerializedName("ride") val ride: Ride
+
 
 )
