@@ -1,6 +1,7 @@
 package com.wise.studentdelivery.network
 
 import com.wise.studentdelivery.model.Photo
+import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,6 +23,24 @@ class RestApiServer {
                     println(response)
                     onResult(addedUser)
                 }
+            }
+        )
+    }
+
+    fun addRideByEmail(ride: Ride,email: String,onResult: (User?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.addRide(ride, email).enqueue(
+            object :Callback<User>{
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    val addRide = response.body()
+                    onResult(addRide)
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't add ride")
+                }
+
             }
         )
     }
@@ -155,6 +174,8 @@ class RestApiServer {
             }
         )
     }
+
+
 
 
 }

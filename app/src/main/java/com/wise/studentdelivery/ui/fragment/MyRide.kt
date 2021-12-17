@@ -10,6 +10,8 @@ import android.widget.Spinner
 import android.widget.Switch
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.model.Ride
+import com.wise.studentdelivery.network.RestApiServer
 
 class MyRide : Fragment() {
     private lateinit var goTme: EditText
@@ -21,10 +23,12 @@ class MyRide : Fragment() {
     private lateinit var price: EditText
     private lateinit var extraDetails: EditText
     private lateinit var privateSwitch: Switch
-    private lateinit var saveRequest:Button
+    private lateinit var saveRequest: Button
+    private lateinit var apiServer: RestApiServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        apiServer = RestApiServer()
     }
 
     override fun onCreateView(
@@ -33,7 +37,7 @@ class MyRide : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_my_ride, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,5 +52,25 @@ class MyRide : Fragment() {
         extraDetails = view.findViewById(R.id.extra_details)
         privateSwitch = view.findViewById(R.id.private_switch)
         saveRequest = view.findViewById(R.id.save_request_button)
+
+        saveRequest.setOnClickListener {
+            val city = cityNameSpinner.selectedItem.toString()
+            val uniName = uniNameSpinner.selectedItem.toString()
+            val ride: Ride = Ride(
+                goTime = goTme.text.toString(),
+                comeBackTime = comeBackTime.text.toString(),
+                cityName = city,
+                emptySeats = emptySeats.text.toString(),
+                price = price.text.toString(),
+                extraDetails = extraDetails.text.toString(),
+                isPrivate = privateSwitch.isChecked,
+                neighborhoodNAme = neighborhoodName.text.toString(),
+                uniName = uniName
+            )
+            apiServer.addRideByEmail(ride,"khalled_95@hotmail.com"){
+                if (it != null)
+                    println("${it.firstName} add")
+            }
+        }
     }
 }

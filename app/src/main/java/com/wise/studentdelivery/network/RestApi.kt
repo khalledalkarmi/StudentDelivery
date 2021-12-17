@@ -1,6 +1,7 @@
 package com.wise.studentdelivery.network
 
 import com.wise.studentdelivery.model.Photo
+import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -10,6 +11,9 @@ import retrofit2.http.*
 interface RestApi {
     @POST("api/v1/users/add")
     fun addUser(@Body user: User): Call<User>
+
+    @POST("api/v1/users/addride/{email}")
+    fun addRide(@Body ride: Ride,@Path("email")email: String):Call<User>
 
     @POST("api/v1/users/updatePassword/{email}/{newPassword}")
     fun updatePassword(@Path("email") email: String,@Path("newPassword")newPassword:String):Call<String>

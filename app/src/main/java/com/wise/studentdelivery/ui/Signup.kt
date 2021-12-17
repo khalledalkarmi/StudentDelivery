@@ -69,7 +69,8 @@ class Signup : AppCompatActivity() {
             haveCar = Car("BMW", "Green", "400-1203456"),
             uniName = "JU",
             studentNumber = studentID.text.toString(),
-            photo = null
+            photo = null,
+            ride = null
 
         )
 
