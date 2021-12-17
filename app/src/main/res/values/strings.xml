@@ -72,4 +72,5 @@
         <item>معان</item>
         <item>المفرق</item>
     </string-array>
+    <string name="title_activity_requests">RequestsActivity</string>
 </resources>
