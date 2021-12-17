@@ -27,10 +27,29 @@ class RestApiServer {
         )
     }
 
-    fun addRideByEmail(ride: Ride,email: String,onResult: (User?) -> Unit){
+    fun getAllRide(onResult: (List<Ride>?) -> Unit) {
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.getAllRide().enqueue(
+            object : Callback<List<Ride>> {
+                override fun onResponse(call: Call<List<Ride>>, response: Response<List<Ride>>) {
+                    val allRide = response.body()
+                    onResult(allRide)
+                }
+
+                override fun onFailure(call: Call<List<Ride>>, t: Throwable) {
+                    onResult(null)
+                    println("$t cannot get all ride ")
+
+                }
+
+            }
+        )
+    }
+
+    fun addRideByEmail(ride: Ride, email: String, onResult: (User?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addRide(ride, email).enqueue(
-            object :Callback<User>{
+            object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     val addRide = response.body()
                     onResult(addRide)
@@ -84,10 +103,10 @@ class RestApiServer {
         )
     }
 
-    fun getPIN(email: String,onResult: (String?) -> Unit) {
+    fun getPIN(email: String, onResult: (String?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.getPINCode(email).enqueue(
-            object : Callback<String>{
+            object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     val getPIN = response.body()
                     onResult(getPIN)
@@ -103,10 +122,10 @@ class RestApiServer {
         )
     }
 
-    fun updatePassword(email: String,newPassword:String,onResult: (String?) -> Unit){
+    fun updatePassword(email: String, newPassword: String, onResult: (String?) -> Unit) {
         val retrofit = ServiceBuilder.buildService((RestApi::class.java))
         retrofit.updatePassword(email, newPassword).enqueue(
-            object :Callback<String>{
+            object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     val updatePassword = response.body()
                     onResult(updatePassword)
@@ -122,10 +141,10 @@ class RestApiServer {
         )
     }
 
-    fun getUserPassword(email:String,onResult: (String?) -> Unit){
+    fun getUserPassword(email: String, onResult: (String?) -> Unit) {
         val retrofit = ServiceBuilder.buildService((RestApi::class.java))
         retrofit.getUserPassword(email).enqueue(
-            object : Callback<String>{
+            object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     val getUserPassword = response.body()
                     onResult(getUserPassword)
@@ -139,10 +158,10 @@ class RestApiServer {
         )
     }
 
-    fun getImage(email: String,onResult: (Photo?) -> Unit){
+    fun getImage(email: String, onResult: (Photo?) -> Unit) {
         val retrofit = ServiceBuilder.buildService((RestApi::class.java))
         retrofit.getImage(email).enqueue(
-            object : Callback<Photo>{
+            object : Callback<Photo> {
                 override fun onResponse(call: Call<Photo>, response: Response<Photo>) {
                     val getImage = response.body()
                     onResult(getImage)
@@ -157,10 +176,10 @@ class RestApiServer {
         )
     }
 
-    fun getUserByEmail(email: String,onResult: (User?) -> Unit){
+    fun getUserByEmail(email: String, onResult: (User?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.getUserByEmail(email).enqueue(
-            object : Callback<User>{
+            object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     val user = response.body()
                     onResult(user)
@@ -174,8 +193,6 @@ class RestApiServer {
             }
         )
     }
-
-
 
 
 }

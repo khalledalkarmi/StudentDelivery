@@ -13,28 +13,34 @@ interface RestApi {
     fun addUser(@Body user: User): Call<User>
 
     @POST("api/v1/users/addride/{email}")
-    fun addRide(@Body ride: Ride,@Path("email")email: String):Call<User>
+    fun addRide(@Body ride: Ride, @Path("email") email: String): Call<User>
 
     @POST("api/v1/users/updatePassword/{email}/{newPassword}")
-    fun updatePassword(@Path("email") email: String,@Path("newPassword")newPassword:String):Call<String>
+    fun updatePassword(
+        @Path("email") email: String,
+        @Path("newPassword") newPassword: String
+    ): Call<String>
 
     @GET("api/v1/users")
     fun getAllUsers(): Call<List<User>>
+
+    @GET("api/v1/users/getallride")
+    fun getAllRide(): Call<List<Ride>>
 
     @GET("api/v1/users/email/{email}")
     fun checkIfUserExist(@Path("email") email: String): Call<String>
 
     @GET("api/v1/users/pin/{email}")
-    fun getPINCode(@Path("email")email: String): Call<String>
+    fun getPINCode(@Path("email") email: String): Call<String>
 
     @GET("api/v1/users/getpassword/{email}")
-    fun getUserPassword(@Path("email")email: String):Call<String>
+    fun getUserPassword(@Path("email") email: String): Call<String>
 
     @GET("api/v1/users/getimage/{email}")
-    fun getImage(@Path("email") email:String):Call<Photo>
+    fun getImage(@Path("email") email: String): Call<Photo>
 
     @GET("api/v1/users/{email}")
-    fun getUserByEmail(@Path("email") email: String):Call<User>
+    fun getUserByEmail(@Path("email") email: String): Call<User>
 
 
 }
