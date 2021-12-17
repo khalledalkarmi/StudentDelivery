@@ -32,4 +32,41 @@
     <string name="repeat_new_password">Repeat new Password</string>
     <string name="create">Create</string>
     <string name="email_error">The email address or\n password doesn\'t match any account</string>
+    <string name="ride_times">Ride times</string>
+    <string name="go">Go</string>
+    <string name="comeback">Comeback</string>
+    <string name="uni">University</string>
+    <string name="city">City</string>
+    <string name="neighborhood">Neighborhood</string>
+    <string name="empty_seats">Number of empty seats</string>
+    <string name="cost">Cost</string>
+    <string name="details">Details</string>
+    <string name="private_string">Private</string>
+    <string-array name="universities">
+        <item>جامعة العلوم الاسلامية</item>
+        <item>الجامعة الاردنية</item>
+        <item>جامعة اليرموك</item>
+        <item>جامعة مؤتة</item>
+        <item>جامعة العلوم والتكنولوجيا</item>
+        <item>الجامعة الهاشمية</item>
+        <item>جامعة ال البيت</item>
+        <item>جامعة البلقاء التطبيقية</item>
+        <item>جامعة الحسين بن طلال</item>
+        <item>جامعة الطفيلة التقنية</item>
+        <item>الجامعة الالمانية</item>
+    </string-array>
+    <string-array name="cities">
+        <item>عمان</item>
+        <item>اربد</item>
+        <item>البلقاء</item>
+        <item>جرش</item>
+        <item>الزرقاء</item>
+        <item>الطفيلة</item>
+        <item>عجلون</item>
+        <item>العقبة</item>
+        <item>الكرك</item>
+        <item>مادبا</item>
+        <item>معان</item>
+        <item>المفرق</item>
+    </string-array>
 </resources>
