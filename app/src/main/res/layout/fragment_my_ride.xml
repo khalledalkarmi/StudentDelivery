@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@+id/go_time"
             android:layout_width="112dp"
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
@@ -30,11 +30,13 @@
             android:ems="10"
             android:hint="@string/go"
             android:inputType="time"
-            app:layout_constraintEnd_toStartOf="@+id/editTextTime2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/comeback_time"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editTextTime2"
+            android:id="@+id/comeback_time"
             android:layout_width="112dp"
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
@@ -43,7 +45,9 @@
             android:hint="@string/comeback"
             android:inputType="time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <Spinner
             android:id="@+id/spUni"
@@ -53,7 +57,7 @@
             android:layout_marginEnd="16dp"
             android:entries="@array/universities"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+            app:layout_constraintTop_toBottomOf="@+id/go_time" />
 
         <TextView
             android:id="@+id/textView7"
@@ -80,7 +84,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/city_spinner"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -101,26 +105,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <Spinner
-            android:id="@+id/spinner3"
+        <EditText
+            android:id="@+id/neighborhood_name"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
+            android:hint="@string/neighborhood"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+            app:layout_constraintTop_toBottomOf="@+id/city_spinner"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/empty_seats"
             android:layout_width="122dp"
             android:layout_height="48dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:hint="Number"
+            android:hint="@string/number"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+            app:layout_constraintTop_toBottomOf="@+id/neighborhood_name"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/textView10"
@@ -147,16 +157,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <EditText
-            android:id="@+id/editTextNumberDecimal"
+            android:id="@+id/price"
             android:layout_width="122dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:autofillHints="no"
             android:ems="10"
-            android:hint="Price"
+            android:hint="@string/price"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+            app:layout_constraintTop_toBottomOf="@+id/empty_seats"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView12"
@@ -171,16 +183,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/extra_details"
             android:layout_width="280dp"
             android:layout_height="205dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:hint="Information about the ride"
+            android:hint="@string/information_about_the_ride"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/textView13"
@@ -195,23 +209,23 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/private_switch"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="52dp"
             android:layout_marginEnd="252dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/extra_details" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/save_request_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:layout_marginEnd="16dp"
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/extra_details" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

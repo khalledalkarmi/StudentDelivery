@@ -42,6 +42,9 @@
     <string name="cost">Cost</string>
     <string name="details">Details</string>
     <string name="private_string">Private</string>
+    <string name="price">Price</string>
+    <string name="number">Number</string>
+    <string name="information_about_the_ride">Information about the ride</string>
     <string-array name="universities">
         <item>جامعة العلوم الاسلامية</item>
         <item>الجامعة الاردنية</item>
