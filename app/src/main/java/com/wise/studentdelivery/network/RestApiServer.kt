@@ -46,6 +46,24 @@ class RestApiServer {
         )
     }
 
+    fun getRideByUserEmail(email: String,onResult: (Ride?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.getRideByEmail(email).enqueue(
+            object : Callback<Ride>{
+                override fun onResponse(call: Call<Ride>, response: Response<Ride>) {
+                    val ride = response.body()
+                    onResult(ride)
+                }
+
+                override fun onFailure(call: Call<Ride>, t: Throwable) {
+                    onResult(null)
+                }
+
+            }
+
+        )
+    }
+
     fun addRideByEmail(ride: Ride, email: String, onResult: (User?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addRide(ride, email).enqueue(

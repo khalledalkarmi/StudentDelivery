@@ -42,5 +42,6 @@ interface RestApi {
     @GET("api/v1/users/{email}")
     fun getUserByEmail(@Path("email") email: String): Call<User>
 
-
+    @GET("api/v1/users/getride/{email}")
+    fun getRideByEmail(@Path("email") email:String):Call<Ride>
 }
