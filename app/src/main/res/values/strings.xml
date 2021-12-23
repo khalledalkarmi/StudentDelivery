@@ -73,4 +73,6 @@
         <item>المفرق</item>
     </string-array>
     <string name="title_activity_requests">RequestsActivity</string>
+    <string name="rides">Rides</string>
+    <string name="profile">Profile</string>
 </resources>
