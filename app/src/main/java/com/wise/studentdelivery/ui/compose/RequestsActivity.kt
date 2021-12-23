@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,16 +29,15 @@ import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.compose.ui.theme.Shapes
 import com.wise.studentdelivery.ui.compose.ui.theme.StudentDeliveryTheme
+//TODO: change it to fragment
 
 class RequestsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val apiServer = RestApiServer()
-//        var allRide: List<Ride>? = null
         apiServer.getAllRide {
             if (it != null) {
-//                allRide = it
                 setContent {
                     StudentDeliveryTheme {
                         // A surface container using the 'background' color from the theme
@@ -53,19 +53,6 @@ class RequestsActivity : ComponentActivity() {
         }
     }
 
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    StudentDeliveryTheme {
-        Greeting("Android")
-    }
 }
 
 @Composable
@@ -101,14 +88,8 @@ fun RideCompose(allRide: List<Ride>) {
             }
         }
     }
-//    println("ridee $allRide ride")
-//    Column() {
-//        allRide.forEach { _a ->
-//            Text(text = _a.goTime)
-//        }
-//    }
 }
-
+//TODO add name for ride and image
 @Composable
 fun RideText(ride: Ride) {
     var rideNeighborhood = ""
@@ -131,6 +112,7 @@ fun RideText(ride: Ride) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp)
+            .clickable { TODO("nav to ride view fragment") }
     )
 }
 

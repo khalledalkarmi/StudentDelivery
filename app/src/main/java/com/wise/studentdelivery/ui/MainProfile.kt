@@ -9,6 +9,7 @@ import android.widget.ImageView
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 //TODO: implement button navigation
+//TODO: change it to fragment
 class MainProfile : AppCompatActivity() {
     private lateinit var profileImage :ImageView
     private lateinit var myRequestButton: Button
