@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Switch
+import android.widget.*
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Ride
@@ -52,7 +49,21 @@ class MyRide : Fragment() {
         extraDetails = view.findViewById(R.id.extra_details)
         privateSwitch = view.findViewById(R.id.private_switch)
         saveRequest = view.findViewById(R.id.save_request_button)
-
+        val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
+        val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
+        apiServer.getRideByUserEmail("khalled_95@hotmail.com"){
+            if (it != null){
+                goTme.setText(it.goTime)
+                comeBackTime.setText(it.comeBackTime)
+                uniNameSpinner.setSelection(uniNameArrayAdapter.getPosition(it.uniName))
+                cityNameSpinner.setSelection(cityNameArrayAdapter.getPosition(it.cityName))
+                neighborhoodName.setText(it.neighborhoodNAme)
+                emptySeats.setText(it.emptySeats)
+                price.setText(it.price)
+                extraDetails.setText(it.extraDetails)
+                privateSwitch.isChecked=it.isPrivate
+            }
+        }
         saveRequest.setOnClickListener {
             val city = cityNameSpinner.selectedItem.toString()
             val uniName = uniNameSpinner.selectedItem.toString()
