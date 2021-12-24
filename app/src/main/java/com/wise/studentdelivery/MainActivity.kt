@@ -46,8 +46,10 @@ class MainActivity : AppCompatActivity() {
             if (checkIfUserExist(email).toString().isNotEmpty()) {
                 apiServer.getUserPassword(email) {
                     println("$it password for $email")
-                    val intent =Intent(this,MainFunActivity::class.java)
+                    //TODO: send available details to MainFunActivity
+
                     if (it.toString() == password){
+                        val intent =Intent(this,MainFunActivity::class.java)
                         startActivity(intent)
                     }
                 }
