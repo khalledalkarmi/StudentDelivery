@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".ui.compose.RequestsActivity"
+            android:name=".ui.compose.RequestsViewFragment"
             android:exported="false"
             android:label="@string/title_activity_requests"
             android:theme="@style/Theme.StudentDelivery.NoActionBar" />

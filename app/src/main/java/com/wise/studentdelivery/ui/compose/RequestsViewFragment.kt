@@ -1,6 +1,9 @@
 package com.wise.studentdelivery.ui.compose
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -16,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -23,33 +27,39 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.Fragment
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.compose.ui.theme.Shapes
 import com.wise.studentdelivery.ui.compose.ui.theme.StudentDeliveryTheme
-//TODO: change it to fragment
 
-class RequestsActivity : ComponentActivity() {
-
+class RequestsViewFragment : Fragment() {
+    lateinit var apiServer: RestApiServer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val apiServer = RestApiServer()
-        apiServer.getAllRide {
-            if (it != null) {
-                setContent {
-                    StudentDeliveryTheme {
-                        // A surface container using the 'background' color from the theme
-                        Surface(color = MaterialTheme.colors.background) {
-                            RideCompose(it)
-                            //Greeting(name = "khalled")
+        apiServer = RestApiServer()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return ComposeView(requireContext()).apply {
+            apiServer.getAllRide {
+                if (it != null) {
+                    setContent {
+                        StudentDeliveryTheme {
+                            Surface(color = MaterialTheme.colors.background) {
+                                RideCompose(allRide = it)
+                            }
                         }
                     }
+                    println("size  of all ride list: ${it.size}")
                 }
             }
-
-            println(it)
         }
     }
 
@@ -89,6 +99,7 @@ fun RideCompose(allRide: List<Ride>) {
         }
     }
 }
+
 //TODO add name for ride and image
 @Composable
 fun RideText(ride: Ride) {
