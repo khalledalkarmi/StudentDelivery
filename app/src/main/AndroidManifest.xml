@@ -15,18 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".ui.compose.RequestsViewFragment"
-            android:exported="false"
-            android:label="@string/title_activity_requests"
-            android:theme="@style/Theme.StudentDelivery.NoActionBar" />
-        <activity
-            android:name=".ui.MainProfile"
-            android:exported="false" />
-        <activity
             android:name=".ui.ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".ui.Profile"
             android:exported="false" />
         <activity
             android:name=".ui.Signup"

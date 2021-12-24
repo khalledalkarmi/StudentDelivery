@@ -1,4 +1,4 @@
-package com.wise.studentdelivery.ui
+package com.wise.studentdelivery.ui.fragment
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 //TODO: implement button navigation
-class MainProfile : Fragment() {
+class MainProfileFragment : Fragment() {
     private lateinit var profileImage :ImageView
     private lateinit var myRequestButton: Button
     private lateinit var savedRequestButton: Button
