@@ -70,14 +70,6 @@ fun RideCompose(allRide: List<Ride>) {
     val listModifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                backgroundColor = MaterialTheme.colors.primary,
-                title = { Text(stringResource(R.string.app_name)) }
-            )
-        }
-    ) {
         LazyColumn(
             modifier = listModifier,
             contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp),
@@ -98,7 +90,7 @@ fun RideCompose(allRide: List<Ride>) {
             }
         }
     }
-}
+
 
 //TODO add name for ride and image
 @Composable
