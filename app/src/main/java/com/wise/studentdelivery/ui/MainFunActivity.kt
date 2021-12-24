@@ -15,7 +15,7 @@ class MainFunActivity : AppCompatActivity(R.layout.activity_main_fun) {
         if (savedInstanceState == null){
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<RequestsViewFragment>(R.id.fragmentContainerViewMainFun)
+                add<BottomNavigationFragment>(R.id.fragmentContainerViewMainFun)
             }
         }
     }
