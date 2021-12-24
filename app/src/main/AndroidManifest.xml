@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".ui.MainFunActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ForgotPassword"
             android:exported="false" />
         <activity
