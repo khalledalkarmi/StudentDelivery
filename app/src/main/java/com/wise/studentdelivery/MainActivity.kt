@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.ForgotPassword
+import com.wise.studentdelivery.ui.MainFunActivity
 import com.wise.studentdelivery.ui.Signup
 
 /*
@@ -41,10 +42,14 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             val email = email.text.toString()
+            val password = password.text.toString()
             if (checkIfUserExist(email).toString().isNotEmpty()) {
                 apiServer.getUserPassword(email) {
                     println("$it password for $email")
-                    //TODO: create request activity and goto it
+                    val intent =Intent(this,MainFunActivity::class.java)
+                    if (it.toString() == password){
+                        startActivity(intent)
+                    }
                 }
             }
         }
