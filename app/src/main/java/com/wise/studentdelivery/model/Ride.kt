@@ -1,6 +1,9 @@
 package com.wise.studentdelivery.model
 
 data class Ride(
+    val email:String,
+    val firstName:String,
+    val lastName:String,
     val goTime: String,
     val comeBackTime: String,
     val uniName: String,
