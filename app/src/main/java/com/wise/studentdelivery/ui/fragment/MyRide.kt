@@ -57,6 +57,10 @@ class MyRide : Fragment() {
             val city = cityNameSpinner.selectedItem.toString()
             val uniName = uniNameSpinner.selectedItem.toString()
             val ride: Ride = Ride(
+                //TODO: get email, first name and last name  from data model
+                email = "khalled_95@hotmail.com",
+                firstName = "khalled",
+                lastName = "alkarmi",
                 goTime = goTme.text.toString(),
                 comeBackTime = comeBackTime.text.toString(),
                 cityName = city,
@@ -67,7 +71,7 @@ class MyRide : Fragment() {
                 neighborhoodNAme = neighborhoodName.text.toString(),
                 uniName = uniName
             )
-            apiServer.addRideByEmail(ride,"khalled_95@hotmail.com"){
+            apiServer.addRideByEmail(ride, "khalled_95@hotmail.com") {
                 if (it != null)
                     println("${it.firstName} add")
             }
