@@ -29,11 +29,13 @@
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="@string/go"
+            android:importantForAutofill="no"
             android:inputType="time"
             app:layout_constraintEnd_toStartOf="@+id/comeback_time"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/comeback_time"
@@ -43,11 +45,13 @@
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/comeback"
+            android:importantForAutofill="no"
             android:inputType="time"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck" />
 
         <Spinner
             android:id="@+id/spUni"
@@ -57,6 +61,8 @@
             android:layout_marginEnd="16dp"
             android:entries="@array/universities"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/go_time" />
 
         <TextView
@@ -87,10 +93,12 @@
             android:id="@+id/city_spinner"
             android:layout_width="200dp"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:entries="@array/cities"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/spUni" />
 
         <TextView
@@ -105,32 +113,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <EditText
-            android:id="@+id/neighborhood_name"
+        <Spinner
+            android:id="@+id/spNeighborhoods"
             android:layout_width="200dp"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/neighborhood"
-            android:inputType="text"
+            android:entries="@array/amman_neighborhoods"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city_spinner"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/city_spinner" />
 
         <EditText
             android:id="@+id/empty_seats"
             android:layout_width="122dp"
             android:layout_height="48dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/number"
+            android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/neighborhood_name"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/spNeighborhoods"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView10"
@@ -144,12 +154,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
+
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="48dp"
             android:text="@string/cost"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -160,13 +171,15 @@
             android:id="@+id/price"
             android:layout_width="122dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:autofillHints="no"
             android:ems="10"
             android:hint="@string/price"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/empty_seats"
             tools:ignore="TextContrastCheck" />
 
@@ -175,33 +188,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="96dp"
             android:text="@string/details"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <EditText
             android:id="@+id/extra_details"
             android:layout_width="280dp"
             android:layout_height="205dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="4dp"
             android:ems="10"
             android:hint="@string/information_about_the_ride"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.775"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/price"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="168dp"
             android:text="@string/private_string"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -212,20 +227,46 @@
             android:id="@+id/private_switch"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="252dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/extra_details" />
 
         <Button
             android:id="@+id/save_request_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="16dp"
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/extra_details" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:text="@string/gender_specific"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <Spinner
+            android:id="@+id/genderSpecificSpinner"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"
+            android:entries="@array/gender_spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.928"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

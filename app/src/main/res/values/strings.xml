@@ -45,6 +45,11 @@
     <string name="price">Price</string>
     <string name="number">Number</string>
     <string name="information_about_the_ride">Information about the ride</string>
+    <string-array name="gender_spinner">
+        <item>No</item>
+        <item>Male only</item>
+        <item>Female only</item>
+    </string-array>
     <string-array name="universities">
         <item>جامعة العلوم الاسلامية</item>
         <item>الجامعة الاردنية</item>
@@ -72,7 +77,17 @@
         <item>معان</item>
         <item>المفرق</item>
     </string-array>
+    <string-array name="amman_neighborhoods">
+        <item>طبربور</item>
+        <item>الجبيهة</item>
+        <item>الوحدات</item>
+    </string-array>
+    <string-array name="zarqa_neighborhoods">
+        <item>حي الاميرة رحمة</item>
+        <item>الرصيفة</item>
+    </string-array>
     <string name="title_activity_requests">RequestsActivity</string>
     <string name="rides">Rides</string>
     <string name="profile">Profile</string>
+    <string name="gender_specific">Gender-specific</string>
 </resources>
