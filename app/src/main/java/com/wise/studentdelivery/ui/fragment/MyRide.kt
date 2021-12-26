@@ -10,6 +10,7 @@ import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.network.RestApiServer
+import com.wise.studentdelivery.utilities.Validator
 
 class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -25,8 +26,7 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var privateSwitch: Switch
     private lateinit var saveRequest: Button
     private lateinit var apiServer: RestApiServer
-
-
+    private lateinit var validator: Validator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,19 +60,24 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
         privateSwitch = view.findViewById(R.id.private_switch)
         saveRequest = view.findViewById(R.id.save_request_button)
 
+        validator = Validator()
 
         val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
         val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
         val neighborhoodNameArrayAdapter = neighborhoodNameSpinner.adapter as ArrayAdapter<String>
         val genderSpecificArrayAdapter = genderSpecificSpinner.adapter as ArrayAdapter<String>
 
-        val adapter1 = ArrayAdapter.createFromResource(activity!!, R.array.cities, android.R.layout.simple_spinner_item)
+        val adapter1 = ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.cities,
+            android.R.layout.simple_spinner_item
+        )
         cityNameSpinner.adapter = adapter1
         cityNameSpinner.onItemSelectedListener = this
 
 
-        apiServer.getRideByUserEmail("khalled_95@hotmail.com"){
-            if (it != null){
+        apiServer.getRideByUserEmail("khalled_95@hotmail.com") {
+            if (it != null) {
                 goTme.setText(it.goTime)
                 comeBackTime.setText(it.comeBackTime)
                 uniNameSpinner.setSelection(uniNameArrayAdapter.getPosition(it.uniName))
@@ -82,60 +87,65 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 price.setText(it.price)
                 genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition(it.genderSpecific))
                 extraDetails.setText(it.extraDetails)
-                privateSwitch.isChecked=it.isPrivate
+                privateSwitch.isChecked = it.isPrivate
             }
         }
 
-
-        saveRequest.setOnClickListener {
-            val city = cityNameSpinner.selectedItem.toString()
-            val uniName = uniNameSpinner.selectedItem.toString()
-            val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
-            val gender = genderSpecificSpinner.selectedItem.toString()
-            var genderSpecific = "No"
-            if (gender == "Male only"){
-                genderSpecific=Gender.MALE.toString()
-            }else if (gender == "Female only"){
-                genderSpecific = Gender.FEMALE.toString()
-            }
-            val ride: Ride = Ride(
-                //TODO: get email, first name and last name  from data model
-                email = "khalled_95@hotmail.com",
-                firstName = "khalled",
-                lastName = "alkarmi",
-                goTime = goTme.text.toString(),
-                comeBackTime = comeBackTime.text.toString(),
-                cityName = city,
-                emptySeats = emptySeats.text.toString(),
-                price = price.text.toString(),
-                genderSpecific = genderSpecific,
-                extraDetails = extraDetails.text.toString(),
-                isPrivate = privateSwitch.isChecked,
-                neighborhoodNAme = neighborhoodName,
-                uniName = uniName
+        if (validator.isNotNull(goTme) && validator.isNotNull(comeBackTime) && validator.isNotNull(
+                emptySeats
             )
+        ) {
+            saveRequest.setOnClickListener {
+                val city = cityNameSpinner.selectedItem.toString()
+                val uniName = uniNameSpinner.selectedItem.toString()
+                val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
+                val gender = genderSpecificSpinner.selectedItem.toString()
+                var genderSpecific = "No"
+                if (gender == "Male only") {
+                    genderSpecific = Gender.MALE.toString()
+                } else if (gender == "Female only") {
+                    genderSpecific = Gender.FEMALE.toString()
+                }
+                val ride: Ride = Ride(
+                    //TODO: get email, first name and last name  from data model
+                    email = "khalled_95@hotmail.com",
+                    firstName = "khalled",
+                    lastName = "alkarmi",
+                    goTime = goTme.text.toString(),
+                    comeBackTime = comeBackTime.text.toString(),
+                    cityName = city,
+                    emptySeats = emptySeats.text.toString(),
+                    price = price.text.toString(),
+                    genderSpecific = genderSpecific,
+                    extraDetails = extraDetails.text.toString(),
+                    isPrivate = privateSwitch.isChecked,
+                    neighborhoodNAme = neighborhoodName,
+                    uniName = uniName
+                )
 
-            apiServer.addRideByEmail(ride, "khalled_95@hotmail.com") {
-                if (it != null)
-                    println("${it.firstName} add")
+                apiServer.addRideByEmail(ride, "khalled_95@hotmail.com") {
+                    if (it != null)
+                        println("${it.firstName} add")
+                }
             }
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (cityNameSpinner.selectedItem == "عمان") {
-            val adapter2 = ArrayAdapter.createFromResource(activity!!,
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
                 R.array.amman_neighborhoods, android.R.layout.simple_spinner_item
             )
             neighborhoodNameSpinner.adapter = adapter2
         } else if (cityNameSpinner.selectedItem == "الزرقاء") {
-            val adapter2 = ArrayAdapter.createFromResource(activity!!,
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
                 R.array.zarqa_neighborhoods, android.R.layout.simple_spinner_item
             )
             neighborhoodNameSpinner.adapter = adapter2
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-    }
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 }
