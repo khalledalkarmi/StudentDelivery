@@ -13,6 +13,8 @@ import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 //TODO: implement button navigation
 class MainProfileFragment : Fragment() {
+
+
     private lateinit var profileImage :ImageView
     private lateinit var myRequestButton: Button
     private lateinit var savedRequestButton: Button
@@ -22,6 +24,12 @@ class MainProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer=RestApiServer()
+
+
+
+
+
+
     }
 
     override fun onCreateView(
@@ -37,8 +45,9 @@ class MainProfileFragment : Fragment() {
         profileImage = view.findViewById(R.id.main_profile_image)
         myRequestButton = view.findViewById(R.id.my_requset)
         savedRequestButton = view.findViewById(R.id.saved_request)
-        accountSittingButton = view.findViewById(R.id.account_settings)
-        reportProblemButton = view.findViewById(R.id.reporta_problem)
+        accountSittingButton = view.findViewById(R.id.account_information)
+        reportProblemButton = view.findViewById(R.id.change_password)
+
 
         //TODO: pass email from any activity
         apiServer.getImage("khalled_95@hotmail.com"){
