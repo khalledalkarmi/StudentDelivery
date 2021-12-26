@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/rides" android:icon="@drawable/ic_rides"/>
-    <item android:title="@string/profile" android:icon="@drawable/ic_profile" />
+    <item
+        android:id="@+id/ride_nav"
+        android:icon="@drawable/ic_rides"
+        android:title="@string/rides" />
+    <item
+        android:id="@+id/profile_nav"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/profile" />
 </menu>
