@@ -158,9 +158,20 @@ class Validator {
         }
     }
 
-    fun genderSelected(male: RadioButton, female: RadioButton): Boolean {
+    private fun genderSelected(male: RadioButton, female: RadioButton): Boolean {
 
         return male.isSelected || female.isSelected
     }
+
+    private fun isNotNull(data: Any,updateUI: Boolean = true):Boolean{
+        val str = getText(data)
+        val valid = str.isNotEmpty()
+        if (updateUI) {
+            val error: String? = if (valid) null else EMAIL_VALIDATION_MSG
+            setError(data, error)
+        }
+        return valid
+    }
+
 
 }
