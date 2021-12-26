@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
                     if (it.toString() == password){
                         val intent =Intent(this,MainFunActivity::class.java)
+                        intent.putExtra("email",email)
                         startActivity(intent)
                     }
                 }
