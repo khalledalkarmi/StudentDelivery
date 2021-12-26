@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.network.RestApiServer
 
@@ -90,7 +91,13 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
             val city = cityNameSpinner.selectedItem.toString()
             val uniName = uniNameSpinner.selectedItem.toString()
             val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
-            val genderSpecific = genderSpecificSpinner.selectedItem.toString()
+            val gender = genderSpecificSpinner.selectedItem.toString()
+            var genderSpecific = "No"
+            if (gender == "Male only"){
+                genderSpecific=Gender.MALE.toString()
+            }else if (gender == "Female only"){
+                genderSpecific = Gender.FEMALE.toString()
+            }
             val ride: Ride = Ride(
                 //TODO: get email, first name and last name  from data model
                 email = "khalled_95@hotmail.com",
