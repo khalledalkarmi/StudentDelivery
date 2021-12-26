@@ -37,6 +37,7 @@ import com.wise.studentdelivery.ui.compose.ui.theme.StudentDeliveryTheme
 
 class RequestsViewFragment : Fragment() {
     lateinit var apiServer: RestApiServer
+    private lateinit var email: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer = RestApiServer()
@@ -47,6 +48,7 @@ class RequestsViewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        email = requireArguments().getString("email").toString()
         return ComposeView(requireContext()).apply {
             apiServer.getAllRide {
                 if (it != null) {
@@ -70,26 +72,26 @@ fun RideCompose(allRide: List<Ride>) {
     val listModifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
-        LazyColumn(
-            modifier = listModifier,
-            contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            items(allRide) { ride ->
-                Box(
-                    modifier = Modifier.border(
-                        border = BorderStroke(
-                            width = 3.dp,
-                            color = Color.Black
-                        )
-                    ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    RideText(ride = ride)
-                }
+    LazyColumn(
+        modifier = listModifier,
+        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        items(allRide) { ride ->
+            Box(
+                modifier = Modifier.border(
+                    border = BorderStroke(
+                        width = 3.dp,
+                        color = Color.Black
+                    )
+                ),
+                contentAlignment = Alignment.Center
+            ) {
+                RideText(ride = ride)
             }
         }
     }
+}
 
 
 //TODO add name for ride and image
