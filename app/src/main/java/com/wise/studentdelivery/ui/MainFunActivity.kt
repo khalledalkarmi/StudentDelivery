@@ -16,9 +16,11 @@ class MainFunActivity : AppCompatActivity(R.layout.activity_main_fun) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             email = intent.getStringExtra("email").toString()
-            val bundle = bundleOf("email" to email)
+            println("$email in main fun activity")
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
+                val bundle = bundleOf("email" to email)
+
                 add<BottomNavigationFragment>(R.id.fragmentContainerViewMainFun, args = bundle)
             }
         }

@@ -18,6 +18,9 @@ class BottomNavigationFragment : Fragment() {
     private lateinit var email: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //    email = requireArguments().getString("email").toString()
+
     }
 
     override fun onCreateView(
@@ -25,7 +28,7 @@ class BottomNavigationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        email = requireArguments().getString("email").toString()
+        email = arguments?.get("email").toString()
 
         return inflater.inflate(R.layout.bottom_navigation_bar, container, false)
 
@@ -50,6 +53,7 @@ class BottomNavigationFragment : Fragment() {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to email)
                         setReorderingAllowed(true)
+                        println("email in nav bot $email")
                         mainProfileFragment.arguments = bundle
                         replace(R.id.fragmentContainerViewMain, mainProfileFragment)
                     }

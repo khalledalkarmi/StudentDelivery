@@ -35,6 +35,8 @@ class MainProfileFragment : Fragment() {
         apiServer=RestApiServer()
         profileFragment = ProfileFragment()
         setNewPassword = SetNewPassword()
+        email = requireArguments().getString("email").toString()
+
     }
 
     override fun onCreateView(
@@ -42,7 +44,6 @@ class MainProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        email = requireArguments().getString(email).toString()
         return inflater.inflate(R.layout.fragment_main_profile, container, false)
     }
 
@@ -71,7 +72,6 @@ class MainProfileFragment : Fragment() {
                 replace(R.id.fragmentContainerViewMainFun,setNewPassword)
             }
         }
-        //TODO: pass email from any activity
         apiServer.getImage(email = email){
             println(it.toString())
             if (it != null) {

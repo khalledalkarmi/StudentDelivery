@@ -20,10 +20,10 @@ class ProfileFragment : Fragment() {
     private lateinit var addressProfile: EditText
     private lateinit var saveProfileButton: Button
     private lateinit var apiServer: RestApiServer
+    lateinit var email:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer = RestApiServer()
-        //TODO: pass email to get user information
         //TODO: implement change photo
         //TODO: implement save button
         //TODO: add scrollView
@@ -35,6 +35,8 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        email = requireArguments().getString("email").toString()
+        println("$email email in Profile ")
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
@@ -48,12 +50,15 @@ class ProfileFragment : Fragment() {
         addressProfile = view.findViewById(R.id.address_profile)
         saveProfileButton = view.findViewById(R.id.save_profile)
 
-        apiServer.getUserByEmail("khalled_95@hotmail.com") { user ->
+        apiServer.getUserByEmail(email) { user ->
             if (user != null) {
-                apiServer.getImage("khalled_95@hotmail.com") {
-                    val imageBytes = Base64.decode(it?.data, Base64.DEFAULT)
-                    val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                    profileImage.setImageBitmap(decodedImage)
+                apiServer.getImage(email) {
+                    if (it!=null) {
+                        val imageBytes = Base64.decode(it.data, Base64.DEFAULT)
+                        val decodedImage =
+                            BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                        profileImage.setImageBitmap(decodedImage)
+                    }
                 }
                 useNameProfile.setText(user.firstName + " " + user.lastName)
                 phoneNumberProfile.setText(user.phoneNumber)
