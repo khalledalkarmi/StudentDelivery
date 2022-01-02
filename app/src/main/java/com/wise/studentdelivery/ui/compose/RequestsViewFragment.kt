@@ -92,14 +92,16 @@ class RequestsViewFragment : Fragment() {
                     ),
                     contentAlignment = Alignment.Center
                 ) {
-                    RideText(ride = ride)
+                    println("${ride.isPrivate} ${ride.firstName}")
+                    if (ride.isPrivate == "false")
+                        RideText(ride = ride)
                 }
-               // Image(email = ride.email)
-                
+                // Image(email = ride.email)
+
             }
         }
     }
-    
+
 //    @Composable
 //    fun Image(email:String){
 //        var decodedImage = BitmapFactory.decodeResource(

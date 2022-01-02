@@ -98,7 +98,10 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 else if (it.genderSpecific.toString() == "FEMALE")
                     genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Female only"))
                 extraDetails.setText(it.extraDetails)
-                privateSwitch.isChecked = it.isPrivate
+                if (it.isPrivate == "true")
+                    privateSwitch.isChecked = true
+                else
+                    privateSwitch.isChecked = false
             }
         }
 
@@ -126,7 +129,7 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 price = price.text.toString(),
                 genderSpecific = genderSpecific,
                 extraDetails = extraDetails.text.toString(),
-                isPrivate = privateSwitch.isChecked,
+                isPrivate = privateSwitch.isChecked.toString(),
                 neighborhoodNAme = neighborhoodName,
                 uniName = uniName,
                 photo = null

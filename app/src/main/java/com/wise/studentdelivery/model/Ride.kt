@@ -14,5 +14,5 @@ data class Ride(
     val price:String,
     val extraDetails:String,
     val genderSpecific:String,
-    val isPrivate:Boolean
+    val isPrivate:String
 )
