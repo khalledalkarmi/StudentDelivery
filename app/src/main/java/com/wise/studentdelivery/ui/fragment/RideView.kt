@@ -69,30 +69,36 @@ class RideView : Fragment() {
 
 
         apiServer.getUserByEmail("khalled_95@hotmail.com") {
-            apiServer.getImage("khalled_95@hotmail.com") {
-                if (it!=null) {
-                    val imageBytes = Base64.decode(it.data, Base64.DEFAULT)
-                    val decodedImage =
-                        BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                    profileImageView.setImageBitmap(decodedImage)
+            if (it != null) {
+                apiServer.getImage(it.email.toString()) {
+                    if (it != null) {
+                        val imageBytes = Base64.decode(it.data, Base64.DEFAULT)
+                        val decodedImage =
+                            BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                        profileImageView.setImageBitmap(decodedImage)
+                    }
                 }
+                nameTextview.text = it.firstName.toString() + " " + it.lastName.toString()
+                genderTextview.text = it.gender.toString()
+                uniTextview.text = it.uniName.toString()
+                addressTextview.text =
+                    it.ride?.cityName.toString() + ", " + it.ride?.neighborhoodNAme.toString()
+                phoneTextview.text = it.phoneNumber.toString()
+                emailTextview.text = it.email.toString()
+                goTimeTextview.text = it.ride?.goTime
+                comebackTimeTextview.text = it.ride?.comeBackTime
+                emptySeatsTextview.text = it.ride?.emptySeats
+                costTextview.text = it.ride?.price
+                genderSpecificTextview.text = it.ride?.genderSpecific
+                detailsTextview.text = it.ride?.extraDetails
             }
-            nameTextview.setText(firstName + " " + lastName)
-            genderTextview.setText(gender)
-            uniTextview.setText(uniName)
-            addressTextview.setText(cityName + ", " + neighborhoodNAme)
-            phoneTextview.setText(phoneNumber)
-            emailTextview.setText(email)
-            goTimeTextview.setText(goTime)
-            comebackTimeTextview.setText(comeBackTime)
-            emptySeatsTextview.setText(emptySeats)
-            costTextview.setText(price)
-            genderSpecificTextview.setText(genderSpecific)
-            detailsTextview.setText(extraDetails)
         }
 
         callButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(phoneTextview.toString().trim())))
+            val intent = Intent(
+                Intent.ACTION_DIAL,
+                Uri.parse("tel:" + Uri.encode(phoneTextview.toString().trim()))
+            )
             startActivity(intent)
         }
 
