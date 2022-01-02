@@ -100,12 +100,11 @@ class Signup : AppCompatActivity() {
         return emailValid && firstNameValid && lastNameValid && studentIDValid && passwordValid && rePasswordValid && isPasswordMatches && genderValid
     }
 
-    private fun returnGender(id: Int): Gender {
+    private fun returnGender(id: Int): Gender? {
         if (id == R.id.female_radioButton)
             return Gender.FEMALE
         if (id == R.id.male_radioButton)
             return Gender.MALE
-        //FIXME: add null return
-        return Gender.MALE
+        return null
     }
 }
