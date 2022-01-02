@@ -27,6 +27,7 @@ class MainProfileFragment : Fragment() {
     private lateinit var changePasswordButton: Button
     private lateinit var profileFragment: ProfileFragment
     private lateinit var setNewPassword: SetNewPassword
+    private lateinit var myRide:MyRide
     private lateinit var logOutButton: Button
     private lateinit var email:String
     private lateinit var apiServer: RestApiServer
@@ -35,6 +36,7 @@ class MainProfileFragment : Fragment() {
         apiServer=RestApiServer()
         profileFragment = ProfileFragment()
         setNewPassword = SetNewPassword()
+        myRide = MyRide()
         email = requireArguments().getString("email").toString()
 
     }
@@ -60,6 +62,7 @@ class MainProfileFragment : Fragment() {
         accountSittingButton.setOnClickListener {
             parentFragmentManager.commit {
                 val bundle= bundleOf("email" to email)
+                addToBackStack("mainProfile")
                 profileFragment.arguments = bundle
                 replace(R.id.fragmentContainerViewMainFun,profileFragment)
             }
@@ -68,10 +71,21 @@ class MainProfileFragment : Fragment() {
         changePasswordButton.setOnClickListener {
             parentFragmentManager.commit {
                 val bundle= bundleOf("email" to email)
+                addToBackStack("changePassword")
                 setNewPassword.arguments = bundle
                 replace(R.id.fragmentContainerViewMainFun,setNewPassword)
             }
         }
+
+        myRequestButton.setOnClickListener {
+                parentFragmentManager.commit {
+                    val bundle = bundleOf("email" to email)
+                    myRide.arguments = bundle
+                    addToBackStack("myRide")
+                    replace(R.id.fragmentContainerViewMainFun,myRide)
+                }
+        }
+
         apiServer.getImage(email = email){
             println(it.toString())
             if (it != null) {
