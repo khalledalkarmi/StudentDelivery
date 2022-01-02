@@ -27,13 +27,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.compose.ui.theme.Shapes
 import com.wise.studentdelivery.ui.compose.ui.theme.StudentDeliveryTheme
+import com.wise.studentdelivery.ui.fragment.RideView
 
 class RequestsViewFragment : Fragment() {
     lateinit var apiServer: RestApiServer
@@ -65,60 +68,67 @@ class RequestsViewFragment : Fragment() {
         }
     }
 
-}
 
-@Composable
-fun RideCompose(allRide: List<Ride>) {
-    val listModifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)
-    LazyColumn(
-        modifier = listModifier,
-        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        items(allRide) { ride ->
-            Box(
-                modifier = Modifier.border(
-                    border = BorderStroke(
-                        width = 3.dp,
-                        color = Color.Black
-                    )
-                ),
-                contentAlignment = Alignment.Center
-            ) {
-                RideText(ride = ride)
+    @Composable
+    fun RideCompose(allRide: List<Ride>) {
+        val listModifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+        LazyColumn(
+            modifier = listModifier,
+            contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            items(allRide) { ride ->
+                Box(
+                    modifier = Modifier.border(
+                        border = BorderStroke(
+                            width = 3.dp,
+                            color = Color.Black
+                        )
+                    ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    RideText(ride = ride)
+                }
             }
         }
     }
-}
 
 
-//TODO add name for ride and image
-@Composable
-fun RideText(ride: Ride) {
-    var rideNeighborhood = ""
-    if (ride.neighborhoodNAme != null) {
-        rideNeighborhood = ride.neighborhoodNAme
+    //TODO add name for ride and image
+    @Composable
+    fun RideText(ride: Ride) {
+        val rideView = RideView()
+        var rideNeighborhood = ""
+        if (ride.neighborhoodNAme != null) {
+            rideNeighborhood = ride.neighborhoodNAme
+        }
+        val rideInfo = String.format(
+            "from ${ride.cityName}, $rideNeighborhood \n" +
+                    "to ${ride.uniName}, \n" +
+                    "go time: ${ride.goTime}, \n" +
+                    "back time ${ride.comeBackTime}, \n" +
+                    "empty seats: ${ride.emptySeats}, \n" +
+                    "price: ${ride.price}"
+        )
+        Text(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            text = rideInfo,
+
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp)
+                .clickable {
+                    parentFragmentManager.commit {
+                        val bundle = bundleOf("email" to ride.email.toString())
+                        rideView.arguments = bundle
+                        replace(R.id.fragmentContainerViewMainFun, rideView)
+                    }
+                }
+        )
     }
-    val rideInfo = String.format(
-        "from ${ride.cityName}, $rideNeighborhood \n" +
-                "to ${ride.uniName}, \n" +
-                "go time: ${ride.goTime}, \n" +
-                "back time ${ride.comeBackTime}, \n" +
-                "empty seats: ${ride.emptySeats}, \n" +
-                "price: ${ride.price}"
-    )
-    Text(
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
-        text = rideInfo,
 
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp)
-            .clickable { TODO("nav to ride view fragment") }
-    )
+
 }
-
-
