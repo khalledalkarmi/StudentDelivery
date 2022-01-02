@@ -120,7 +120,8 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                     extraDetails = extraDetails.text.toString(),
                     isPrivate = privateSwitch.isChecked,
                     neighborhoodNAme = neighborhoodName,
-                    uniName = uniName
+                    uniName = uniName,
+                    photo = null
                 )
 
                 apiServer.addRideByEmail(ride, "khalled_95@hotmail.com") {

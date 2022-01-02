@@ -1,15 +1,16 @@
 package com.wise.studentdelivery.ui.compose
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,7 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -91,10 +94,28 @@ class RequestsViewFragment : Fragment() {
                 ) {
                     RideText(ride = ride)
                 }
+               // Image(email = ride.email)
+                
             }
         }
     }
-
+    
+//    @Composable
+//    fun Image(email:String){
+//        var decodedImage = BitmapFactory.decodeResource(
+//            context?.resources,
+//            R.drawable.blank_profile_picture
+//        )
+//        apiServer.getImage(email = email) {
+//            if (it != null) {
+//                val imageBytes = Base64.decode(it.data, Base64.DEFAULT)
+//                decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//
+//                println("in if" + decodedImage)
+//            }
+//        }
+//        Image(bitmap = decodedImage.asImageBitmap(), contentDescription = "image")
+//    }
 
     //TODO add name for ride and image
     @Composable
@@ -105,12 +126,13 @@ class RequestsViewFragment : Fragment() {
             rideNeighborhood = ride.neighborhoodNAme
         }
         val rideInfo = String.format(
-            "from ${ride.cityName}, $rideNeighborhood \n" +
-                    "to ${ride.uniName}, \n" +
+            "name: ${ride.firstName} ${ride.lastName},\n" +
+                    "from: ${ride.cityName}, $rideNeighborhood \n" +
+                    "to: ${ride.uniName}, \n" +
                     "go time: ${ride.goTime}, \n" +
                     "back time ${ride.comeBackTime}, \n" +
                     "empty seats: ${ride.emptySeats}, \n" +
-                    "price: ${ride.price}"
+                    "price: ${ride.price} JD"
         )
         Text(
             fontSize = 18.sp,

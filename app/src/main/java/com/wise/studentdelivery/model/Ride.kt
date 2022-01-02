@@ -4,6 +4,7 @@ data class Ride(
     val email:String,
     val firstName:String,
     val lastName:String,
+    val photo: Photo?,
     val goTime: String,
     val comeBackTime: String,
     val uniName: String,
