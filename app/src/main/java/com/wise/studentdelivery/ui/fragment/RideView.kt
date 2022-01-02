@@ -32,6 +32,7 @@ class RideView : Fragment() {
     private lateinit var genderSpecificTextview: TextView
     private lateinit var detailsTextview: TextView
     private lateinit var callButton: ImageButton
+    private lateinit var email:String
 
     lateinit var apiServer: RestApiServer
 
@@ -46,6 +47,7 @@ class RideView : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        email = requireArguments().getString("email").toString()
         return inflater.inflate(R.layout.fragment_ride_view, container, false)
     }
 
@@ -69,7 +71,7 @@ class RideView : Fragment() {
         callButton = view.findViewById(R.id.call_button)
 
 
-        apiServer.getUserByEmail("khalled_95@hotmail.com") {
+        apiServer.getUserByEmail(email = email) {
             if (it != null) {
                 apiServer.getImage(it.email.toString()) {
                     if (it != null) {
