@@ -27,7 +27,9 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var saveRequest: Button
     private lateinit var apiServer: RestApiServer
     private lateinit var validator: Validator
-
+    private lateinit var email: String
+    var firstName = ""
+    var lastName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,7 +42,13 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        email = requireArguments().getString("email").toString()
+        apiServer.getUserByEmail(email = email) {
+            if (it != null) {
+                firstName = it.firstName
+                lastName = it.lastName
+            }
+        }
         return inflater.inflate(R.layout.fragment_my_ride, container, false)
     }
 
@@ -76,7 +84,7 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
         cityNameSpinner.onItemSelectedListener = this
 
 
-        apiServer.getRideByUserEmail("khalled_95@hotmail.com") {
+        apiServer.getRideByUserEmail(email = email) {
             if (it != null) {
                 goTme.setText(it.goTime)
                 comeBackTime.setText(it.comeBackTime)
@@ -85,50 +93,50 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(it.neighborhoodNAme))
                 emptySeats.setText(it.emptySeats)
                 price.setText(it.price)
-                genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition(it.genderSpecific))
+                if (it.genderSpecific.toString() == "MALE")
+                    genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Male only"))
+                else if (it.genderSpecific.toString() == "FEMALE")
+                    genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Female only"))
                 extraDetails.setText(it.extraDetails)
                 privateSwitch.isChecked = it.isPrivate
             }
         }
 
-        if (validator.isNotNull(goTme) && validator.isNotNull(comeBackTime) && validator.isNotNull(
-                emptySeats
-            )
-        ) {
-            saveRequest.setOnClickListener {
-                val city = cityNameSpinner.selectedItem.toString()
-                val uniName = uniNameSpinner.selectedItem.toString()
-                val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
-                val gender = genderSpecificSpinner.selectedItem.toString()
-                var genderSpecific = "No"
-                if (gender == "Male only") {
-                    genderSpecific = Gender.MALE.toString()
-                } else if (gender == "Female only") {
-                    genderSpecific = Gender.FEMALE.toString()
-                }
-                val ride: Ride = Ride(
-                    //TODO: get email, first name and last name  from data model
-                    email = "khalled_95@hotmail.com",
-                    firstName = "khalled",
-                    lastName = "alkarmi",
-                    goTime = goTme.text.toString(),
-                    comeBackTime = comeBackTime.text.toString(),
-                    cityName = city,
-                    emptySeats = emptySeats.text.toString(),
-                    price = price.text.toString(),
-                    genderSpecific = genderSpecific,
-                    extraDetails = extraDetails.text.toString(),
-                    isPrivate = privateSwitch.isChecked,
-                    neighborhoodNAme = neighborhoodName,
-                    uniName = uniName,
-                    photo = null
-                )
 
-                apiServer.addRideByEmail(ride, "khalled_95@hotmail.com") {
-                    if (it != null)
-                        println("${it.firstName} add")
-                }
+        saveRequest.setOnClickListener {
+            val city = cityNameSpinner.selectedItem.toString()
+            val uniName = uniNameSpinner.selectedItem.toString()
+            val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
+            val gender = genderSpecificSpinner.selectedItem.toString()
+            var genderSpecific = "No"
+            if (gender == "Male only") {
+                genderSpecific = Gender.MALE.toString()
+            } else if (gender == "Female only") {
+                genderSpecific = Gender.FEMALE.toString()
             }
+
+            val ride: Ride = Ride(
+                email = email,
+                firstName = firstName,
+                lastName = lastName,
+                goTime = goTme.text.toString(),
+                comeBackTime = comeBackTime.text.toString(),
+                cityName = city,
+                emptySeats = emptySeats.text.toString(),
+                price = price.text.toString(),
+                genderSpecific = genderSpecific,
+                extraDetails = extraDetails.text.toString(),
+                isPrivate = privateSwitch.isChecked,
+                neighborhoodNAme = neighborhoodName,
+                uniName = uniName,
+                photo = null
+            )
+
+            apiServer.addRideByEmail(ride, email) {
+                if (it != null)
+                    println("${it.firstName} add")
+            }
+
         }
     }
 
