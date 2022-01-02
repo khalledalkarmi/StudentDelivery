@@ -119,7 +119,6 @@ class RequestsViewFragment : Fragment() {
 //        Image(bitmap = decodedImage.asImageBitmap(), contentDescription = "image")
 //    }
 
-    //TODO add name for ride and image
     @Composable
     fun RideText(ride: Ride) {
         val rideView = RideView()

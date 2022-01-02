@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.ui.compose.RequestsViewFragment
 
-//TODO: manage addToBackStack
 class BottomNavigationFragment : Fragment() {
     private lateinit var rideNav: BottomNavigationView
     private lateinit var email: String
