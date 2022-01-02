@@ -38,9 +38,9 @@
     <string name="uni">University</string>
     <string name="city">City</string>
     <string name="neighborhood">Neighborhood</string>
-    <string name="empty_seats">Number of empty seats</string>
-    <string name="cost">Cost</string>
-    <string name="details">Details</string>
+    <string name="empty_seats">Number of empty seats:</string>
+    <string name="cost">Cost:</string>
+    <string name="details">Details:</string>
     <string name="private_string">Private</string>
     <string name="price">Price</string>
     <string name="number">Number</string>
@@ -89,5 +89,7 @@
     <string name="title_activity_requests">RequestsActivity</string>
     <string name="rides">Rides</string>
     <string name="profile">Profile</string>
-    <string name="gender_specific">Gender-specific</string>
+    <string name="gender_specific">Gender-specific:</string>
+    <string name="go_time">Go time:</string>
+    <string name="comeback_time">Comeback time:</string>
 </resources>
