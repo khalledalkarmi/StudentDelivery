@@ -45,6 +45,7 @@ class BottomNavigationFragment : Fragment() {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to email)
                         setReorderingAllowed(true)
+                        addToBackStack("botNav")
                         requestsViewFragment.arguments = bundle
                         replace(R.id.fragmentContainerViewMain, requestsViewFragment)
                     }
@@ -53,6 +54,7 @@ class BottomNavigationFragment : Fragment() {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to email)
                         setReorderingAllowed(true)
+                        addToBackStack("botNav")
                         println("email in nav bot $email")
                         mainProfileFragment.arguments = bundle
                         replace(R.id.fragmentContainerViewMain, mainProfileFragment)
@@ -65,7 +67,7 @@ class BottomNavigationFragment : Fragment() {
         requestsViewFragment.arguments = bundle
         parentFragmentManager.commit {
             setReorderingAllowed(true)
-
+            addToBackStack("requestsViewFragment")
             replace(R.id.fragmentContainerViewMain, requestsViewFragment)
         }
     }

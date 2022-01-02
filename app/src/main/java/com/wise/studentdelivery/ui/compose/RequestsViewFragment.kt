@@ -145,6 +145,7 @@ class RequestsViewFragment : Fragment() {
                 .clickable {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to ride.email.toString())
+                        addToBackStack("requestView")
                         rideView.arguments = bundle
                         replace(R.id.fragmentContainerViewMainFun, rideView)
                     }
