@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.wise.studentdelivery.R
@@ -30,7 +31,7 @@ class RideView : Fragment() {
     private lateinit var costTextview: TextView
     private lateinit var genderSpecificTextview: TextView
     private lateinit var detailsTextview: TextView
-    private lateinit var callButton: Button
+    private lateinit var callButton: ImageButton
 
     lateinit var apiServer: RestApiServer
 
