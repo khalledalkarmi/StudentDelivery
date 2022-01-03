@@ -7,21 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
-import kotlin.math.log
 
 //TODO: implement button navigation
 class MainProfileFragment : Fragment() {
 
 
     private lateinit var profileImage :ImageView
+    private lateinit var changeImageButton: ImageButton
+    private lateinit var nameTextView: TextView
     private lateinit var myRequestButton: Button
-    private lateinit var savedRequestButton: Button
     private lateinit var accountSittingButton:Button
     private lateinit var reportProblemButton:Button
     private lateinit var changePasswordButton: Button
@@ -52,8 +54,9 @@ class MainProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         profileImage = view.findViewById(R.id.main_profile_image)
+        changeImageButton = view.findViewById(R.id.change_image_button)
+        nameTextView = view.findViewById(R.id.name_textview)
         myRequestButton = view.findViewById(R.id.my_requset)
-        savedRequestButton = view.findViewById(R.id.saved_request)
         accountSittingButton = view.findViewById(R.id.account_information)
         changePasswordButton = view.findViewById(R.id.change_password)
         logOutButton = view.findViewById(R.id.log_out)
@@ -85,6 +88,11 @@ class MainProfileFragment : Fragment() {
                     replace(R.id.fragmentContainerViewMainFun,myRide)
                 }
         }
+        apiServer.getUserByEmail(email) { user ->
+            if (user != null) {
+                nameTextView.setText(user.firstName + " " + user.lastName)
+            }
+        }
 
         apiServer.getImage(email = email){
             println(it.toString())
@@ -94,8 +102,8 @@ class MainProfileFragment : Fragment() {
                 profileImage.setImageBitmap(decodedImage)
             }
         }
-
+        changeImageButton.setOnClickListener{
+            //TODO: implement change image function
+        }
     }
-
-
 }

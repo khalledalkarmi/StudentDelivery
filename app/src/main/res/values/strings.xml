@@ -18,7 +18,7 @@
     <string name="address">Address</string>
     <string name="save">Save</string>
     <string name="login">Login</string>
-    <string name="forgetPassword">Forget your password?</string>
+    <string name="forgetPassword">Forgot your password?</string>
     <string name="Continue">Continue</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -27,11 +27,10 @@
     <string name="enter_your_pin_code">Enter your Pin Code</string>
     <string name="pin_expired">pin expired please try again</string>
     <string name="create_new_password">Create new password</string>
-    <string name="hint_new_password">Your new password must be different from previously used password</string>
+    <string name="hint_new_password">Your new password must be different from previously used password.</string>
     <string name="new_password">New Password</string>
-    <string name="repeat_new_password">Repeat new Password</string>
-    <string name="create">Create</string>
-    <string name="email_error">The email address or\n password doesn\'t match any account</string>
+    <string name="repeat_new_password">Repeat New Password</string>
+    <string name="email_error">The email address or\n password doesn\'t match any account.</string>
     <string name="ride_times">Ride times</string>
     <string name="go">Go</string>
     <string name="comeback">Comeback</string>
@@ -92,4 +91,11 @@
     <string name="gender_specific">Gender-specific:</string>
     <string name="go_time">Go time:</string>
     <string name="comeback_time">Comeback time:</string>
+    <string name="change_password">Change Password</string>
+    <string name="report_a_problem">Report a Problem</string>
+    <string name="log_out">Log Out</string>
+    <string name="my_ride">My Ride</string>
+    <string name="account_information">Account Information</string>
+    <string name="email_to_reset_password">Enter your email to reset your password:</string>
+    <string name="check_email_for_pin">Check your email for pin code.</string>
 </resources>

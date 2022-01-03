@@ -6,105 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:clickable="true"
-        android:contentDescription="@string/profile_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_student_registration_100"
-        android:focusable="true" />
-
     <EditText
-        android:id="@+id/user_name_profile"
+        android:id="@+id/phone_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:autofillHints="username"
-        android:ems="10"
-        android:hint="@string/user_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-
-    <EditText
-        android:id="@+id/phone_number_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="phone"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/Email_profile"
+        android:id="@+id/email_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="emailAddress"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/lname_edittext"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/university_name_profile"
+        android:id="@+id/fname_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="200dp"
         android:ems="10"
-        android:hint="@string/university"
-        android:importantForAutofill="no"
+        android:hint="@string/first_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_profile" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        android:autofillHints="first name" />
 
     <EditText
-        android:id="@+id/address_profile"
+        android:id="@+id/lname_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints="no"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="@string/address"
+        android:hint="@string/last_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/university_name_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/fname_edittext"
+        tools:ignore="TextContrastCheck"
+        android:autofillHints="last name" />
 
     <Button
-        android:id="@+id/save_profile"
-        android:layout_width="105dp"
-        android:layout_height="65dp"
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/rect_rounded_button"
-        android:backgroundTint="#F4F1F1"
-        android:hapticFeedbackEnabled="false"
+        android:backgroundTint="@color/grey"
         android:text="@string/save"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_profile"
-        app:layout_constraintVertical_bias="0.395" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

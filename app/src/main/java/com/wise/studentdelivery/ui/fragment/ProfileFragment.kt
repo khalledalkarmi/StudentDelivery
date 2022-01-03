@@ -1,8 +1,6 @@
 package com.wise.studentdelivery.ui.fragment
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,20 +10,19 @@ import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 
 class ProfileFragment : Fragment() {
-    private lateinit var profileImage: ImageView
-    private lateinit var useNameProfile: EditText
-    private lateinit var phoneNumberProfile: EditText
-    private lateinit var emailProfile: EditText
-    private lateinit var universityProfile: EditText
-    private lateinit var addressProfile: EditText
-    private lateinit var saveProfileButton: Button
-    private lateinit var apiServer: RestApiServer
-    lateinit var email:String
+
+
+    private lateinit var firstNameEdit: EditText
+    private lateinit var lastNameEdit: EditText
+    private lateinit var phoneNumEdit: EditText
+    private lateinit var emailEdit: EditText
+    private lateinit var saveButton: Button
+    lateinit var apiServer: RestApiServer
+    lateinit var email: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer = RestApiServer()
-        //TODO: implement change photo
-        //TODO: implement save button
+
         //TODO: add scrollView
 
     }
@@ -42,30 +39,24 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileImage = view.findViewById(R.id.profile_image)
-        useNameProfile = view.findViewById(R.id.user_name_profile)
-        phoneNumberProfile = view.findViewById(R.id.phone_number_profile)
-        emailProfile = view.findViewById(R.id.Email_profile)
-        universityProfile = view.findViewById(R.id.university_name_profile)
-        addressProfile = view.findViewById(R.id.address_profile)
-        saveProfileButton = view.findViewById(R.id.save_profile)
+
+        firstNameEdit = view.findViewById(R.id.fname_edittext)
+        lastNameEdit = view.findViewById(R.id.lname_edittext)
+        emailEdit = view.findViewById(R.id.email_edittext)
+        phoneNumEdit = view.findViewById(R.id.phone_edittext)
+        saveButton = view.findViewById(R.id.save_button)
 
         apiServer.getUserByEmail(email) { user ->
             if (user != null) {
-                apiServer.getImage(email) {
-                    if (it!=null) {
-                        val imageBytes = Base64.decode(it.data, Base64.DEFAULT)
-                        val decodedImage =
-                            BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                        profileImage.setImageBitmap(decodedImage)
-                    }
-                }
-                useNameProfile.setText(user.firstName + " " + user.lastName)
-                phoneNumberProfile.setText(user.phoneNumber)
-                emailProfile.setText(user.email)
-                universityProfile.setText(user.uniName)
-                addressProfile.setText(user.address.city + " " + user.address.country)
+
+                firstNameEdit.setText(user.firstName)
+                lastNameEdit.setText(user.lastName)
+                emailEdit.setText(user.email)
+                phoneNumEdit.setText(user.phoneNumber)
             }
+        }
+        saveButton.setOnClickListener {
+            //TODO: implement save button
         }
     }
 }

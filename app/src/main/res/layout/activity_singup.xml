@@ -23,7 +23,7 @@
             android:text=""
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -39,9 +39,9 @@
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rewrite_password" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <EditText
             android:id="@+id/email"
@@ -55,7 +55,7 @@
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/student_id" />
 
@@ -72,8 +72,9 @@
             android:text=""
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintTop_toBottomOf="@+id/phone_number" />
 
         <EditText
             android:id="@+id/first_name"
@@ -87,7 +88,7 @@
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +96,7 @@
             android:id="@+id/last_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:autofillHints="name"
             android:ems="10"
             android:hint="@string/last_name"
@@ -103,6 +104,7 @@
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
@@ -110,14 +112,15 @@
             android:id="@+id/signup_button"
             android:layout_width="114dp"
             android:layout_height="48dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/rect_rounded_button"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/grey"
             android:text="@string/signup"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gende_rradio_group"
             app:layout_constraintVertical_bias="0.526" />
@@ -130,7 +133,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone_number">
+            app:layout_constraintTop_toBottomOf="@+id/rewrite_password">
 
             <RadioButton
                 android:id="@+id/male_radioButton"

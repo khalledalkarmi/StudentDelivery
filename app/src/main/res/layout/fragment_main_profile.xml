@@ -6,70 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MainProfileFragment">
 
-    <ImageView
-        android:id="@+id/main_profile_image"
-        android:layout_width="137dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036"
-        app:srcCompat="@drawable/icons8_student_registration_100" />
-
     <Button
         android:id="@+id/my_requset"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="My Requset"
+        android:layout_marginTop="50dp"
+        android:text="@string/my_ride"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
-        android:id="@+id/saved_request"
+        android:id="@+id/account_information"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Saved Request"
+        android:layout_marginTop="30dp"
+        android:text="@string/account_information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_requset" />
 
     <Button
-        android:id="@+id/account_information"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Account information"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_request" />
-
-    <Button
         android:id="@+id/change_password"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Change Password"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="@string/change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_information"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintTop_toBottomOf="@+id/account_information" />
 
     <Button
         android:id="@+id/report_a_problem"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Report a Problem"
+        android:layout_marginTop="30dp"
+        android:text="@string/report_a_problem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,13 +54,60 @@
         android:id="@+id/log_out"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="64dp"
-        android:text="Log Out"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="@string/log_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/report_a_problem" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="233dp"
+        android:src="@drawable/cadet_grey_solid_color_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/main_profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/blank_profile_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/name_textview"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_profile_image" />
+
+    <ImageButton
+        android:id="@+id/change_image_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ic_transparent"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/main_profile_image"
+        app:layout_constraintEnd_toEndOf="@+id/main_profile_image"
+        tools:ignore="ContentDescription,ImageContrastCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
