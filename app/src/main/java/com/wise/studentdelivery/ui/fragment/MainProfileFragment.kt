@@ -150,7 +150,7 @@ class MainProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 100 && resultCode == Activity.RESULT_OK && data != null){
+        if(requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK && data != null){
             profileImage.setImageURI(data.data)
         }else if(requestCode == REQUEST_IMAGE_CAMERA && resultCode == Activity.RESULT_OK && data != null){
             profileImage.setImageBitmap(data.extras?.get("data") as Bitmap)
