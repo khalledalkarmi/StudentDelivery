@@ -1,21 +1,27 @@
 package com.wise.studentdelivery.ui.fragment
 
+
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
-
+//TODO: implement upload image to database
 //TODO: implement button navigation
 class MainProfileFragment : Fragment() {
 
@@ -33,6 +39,8 @@ class MainProfileFragment : Fragment() {
     private lateinit var logOutButton: Button
     private lateinit var email:String
     private lateinit var apiServer: RestApiServer
+    private val REQUEST_IMAGE_GALLERY = 132
+    private val REQUEST_IMAGE_CAMERA = 142
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer=RestApiServer()
@@ -103,7 +111,52 @@ class MainProfileFragment : Fragment() {
             }
         }
         changeImageButton.setOnClickListener{
-            //TODO: implement change image function
+
+            val builder = AlertDialog.Builder(activity!!)
+            builder.setTitle("Select Image")
+            builder.setMessage("Choose your option:")
+            builder.setPositiveButton("Gallery")  { dialog, which ->
+                dialog.dismiss()
+
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/"
+                startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
+
+            }
+            builder.setNegativeButton("Camera")  { dialog, which ->
+                dialog.dismiss()
+
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                    takePictureIntent.resolveActivity(activity!!.packageManager)?.also{
+                        val permission = ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.CAMERA)
+
+                        if(permission != PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.CAMERA),1)
+                        }
+
+                        else{
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAMERA)
+                        }
+                    }
+                }
+            }
+
+            val dialog :AlertDialog = builder.create()
+            dialog.show()
+
         }
     }
-}
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 100 && resultCode == Activity.RESULT_OK && data != null){
+            profileImage.setImageURI(data.data)
+        }else if(requestCode == REQUEST_IMAGE_CAMERA && resultCode == Activity.RESULT_OK && data != null){
+            profileImage.setImageBitmap(data.extras?.get("data") as Bitmap)
+        }
+        else{
+            Toast.makeText(activity!!,"Something went wrong", Toast.LENGTH_SHORT).show()
+        }
+    }
+    }
