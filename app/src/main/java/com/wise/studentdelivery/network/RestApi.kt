@@ -3,7 +3,7 @@ package com.wise.studentdelivery.network
 import com.wise.studentdelivery.model.Photo
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
-import okhttp3.ResponseBody
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -43,5 +43,12 @@ interface RestApi {
     fun getUserByEmail(@Path("email") email: String): Call<User>
 
     @GET("api/v1/users/getride/{email}")
-    fun getRideByEmail(@Path("email") email:String):Call<Ride>
+    fun getRideByEmail(@Path("email") email: String): Call<Ride>
+
+    @POST("api/v1/users/addimage/{email}")
+    @Multipart
+    fun setProfileImage(
+        @Path("email") email: String,
+        @Part image: MultipartBody.Part
+    ): Call<Void>
 }
