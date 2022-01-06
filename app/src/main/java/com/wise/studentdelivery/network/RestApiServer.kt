@@ -3,9 +3,12 @@ package com.wise.studentdelivery.network
 import com.wise.studentdelivery.model.Photo
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
+import okhttp3.MediaType
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class RestApiServer {
 
@@ -46,10 +49,10 @@ class RestApiServer {
         )
     }
 
-    fun getRideByUserEmail(email: String,onResult: (Ride?) -> Unit){
+    fun getRideByUserEmail(email: String, onResult: (Ride?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.getRideByEmail(email).enqueue(
-            object : Callback<Ride>{
+            object : Callback<Ride> {
                 override fun onResponse(call: Call<Ride>, response: Response<Ride>) {
                     val ride = response.body()
                     onResult(ride)
@@ -210,6 +213,27 @@ class RestApiServer {
                 }
             }
         )
+    }
+
+    fun setImageByEmail(imageBitmap: String?, email: String, onResult: (Void?) -> Unit) {
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        val imageFile = File(imageBitmap!!)
+        val imageRequestFile = MultipartBody.create(MediaType.parse("multipart/form-data"),imageFile)
+        val multipartBody = MultipartBody.Part.createFormData("image",imageFile.name,imageRequestFile)
+        retrofit.setProfileImage(email, multipartBody).enqueue(
+            object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    val image = response.body()
+                    onResult(image)
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't add image user by email ")
+                }
+            }
+        )
+
     }
 
 
