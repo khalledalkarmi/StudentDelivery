@@ -30,6 +30,24 @@ class RestApiServer {
         )
     }
 
+    fun updateUser(userData: User, onResult: (Boolean?) -> Unit) {
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.updateUser(userData).enqueue(
+            object : Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    onResult(null)
+                    println(t)
+                }
+
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    val addedUser = response.body()
+                    println(response)
+                    onResult(addedUser)
+                }
+            }
+        )
+    }
+
     fun getAllRide(onResult: (List<Ride>?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.getAllRide().enqueue(
