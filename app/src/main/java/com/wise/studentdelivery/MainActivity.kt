@@ -8,13 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.isVisible
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.ForgotPassword
 import com.wise.studentdelivery.ui.MainFunActivity
 import com.wise.studentdelivery.ui.Signup
 
 /*
-TODO: make request to rewrite password
 TODO: check if internet connected
  */
 class MainActivity : AppCompatActivity() {
@@ -45,10 +45,11 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val email = email.text.toString()
             val password = password.text.toString()
+            println("$password password from local")
             if (checkIfUserExist(email).toString().isNotEmpty()) {
                 apiServer.getUserPassword(email) {
                     println("$it password for $email")
-                    if (it.toString() == password){
+                    if (BCrypt.verifyer().verify(password.toCharArray(),it.toString()).verified){
                         val intent =Intent(this,MainFunActivity::class.java)
                         intent.putExtra("email",email)
                         errorTextView.isVisible = false
@@ -73,4 +74,5 @@ class MainActivity : AppCompatActivity() {
     private fun checkIfUserExist(email: String) {
         return apiServer.checkIfUserExistByEmail(email = email) {}
     }
+
 }
