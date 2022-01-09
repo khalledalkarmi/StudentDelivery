@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
@@ -17,7 +18,7 @@ class SetNewPassword : Fragment() {
     private lateinit var newPasswordText: EditText
     private lateinit var repeatNewPasswordText: EditText
     private lateinit var validator: Validator
-    private lateinit var email:String
+    private lateinit var email: String
     lateinit var apiServer: RestApiServer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +44,20 @@ class SetNewPassword : Fragment() {
 
         createNewPasswordButton.setOnClickListener {
 
-            if (validator.isValidPassword(newPasswordText) && validator.isValidPassword(repeatNewPasswordText)) {
+            if (validator.isValidPassword(newPasswordText) && validator.isValidPassword(
+                    repeatNewPasswordText
+                )
+            ) {
                 val password = newPasswordText.text.toString()
                 val rePassword = repeatNewPasswordText.text.toString()
                 if ((password == rePassword)) {
-                   // TODO("Implement setNewPasswordRequest")
-                    apiServer.updatePassword(email,password){
-                       if (it == "true"){
-                           // TODO: go to signup activity
-                       }else {
-                           // TODO: handle error
-                       }
+                    // TODO("Implement setNewPasswordRequest")
+                    apiServer.updatePassword(email, hashPassword(password)) {
+                        if (it == "true") {
+                            // TODO: go to signup activity
+                        } else {
+                            // TODO: handle error
+                        }
                     }
                 } else {
                     Toast.makeText(
@@ -64,6 +68,10 @@ class SetNewPassword : Fragment() {
                 }
             }
         }
+    }
+
+    private fun hashPassword(password: String): String {
+        return BCrypt.withDefaults().hashToString(10, password.toCharArray())
     }
 }
 

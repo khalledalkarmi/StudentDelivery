@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Address
 import com.wise.studentdelivery.model.Car
@@ -59,7 +60,7 @@ class Signup : AppCompatActivity() {
         val user = User(
             firstName = firstName.text.toString(),
             lastName = lastName.text.toString(),
-            password = password.text.toString(),
+            password = hashPassword(password.text.toString()),
             gender = gender,
             email = email.text.toString(),
             phoneNumber = phoneNumber.text.toString(),
@@ -106,5 +107,9 @@ class Signup : AppCompatActivity() {
         if (id == R.id.male_radioButton)
             return Gender.MALE
         return null
+    }
+
+    private fun hashPassword(password: String): String {
+        return BCrypt.withDefaults().hashToString(10, password.toCharArray())
     }
 }
