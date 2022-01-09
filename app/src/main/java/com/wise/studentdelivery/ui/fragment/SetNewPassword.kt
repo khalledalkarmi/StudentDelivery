@@ -1,5 +1,6 @@
 package com.wise.studentdelivery.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.wise.studentdelivery.MainActivity
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
@@ -24,6 +26,7 @@ class SetNewPassword : Fragment() {
         super.onCreate(savedInstanceState)
         validator = Validator()
         apiServer = RestApiServer()
+
     }
 
     override fun onCreateView(
@@ -44,19 +47,27 @@ class SetNewPassword : Fragment() {
 
         createNewPasswordButton.setOnClickListener {
 
-            if (validator.isValidPassword(newPasswordText) && validator.isValidPassword(
-                    repeatNewPasswordText
-                )
-            ) {
+            if (validator.isValidPassword(newPasswordText)) {
                 val password = newPasswordText.text.toString()
                 val rePassword = repeatNewPasswordText.text.toString()
                 if ((password == rePassword)) {
-                    // TODO("Implement setNewPasswordRequest")
-                    apiServer.updatePassword(email, hashPassword(password)) {
-                        if (it == "true") {
-                            // TODO: go to signup activity
+                    apiServer.updatePassword(email, hashPassword(password)) { updated ->
+                        if (updated == "true") {
+                            activity?.let {
+                                val intent = Intent(it, MainActivity::class.java)
+                                intent.addFlags(
+                                    Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                            or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                            or Intent.FLAG_ACTIVITY_NEW_TASK
+                                )
+                                startActivity(intent)
+                            }
                         } else {
-                            // TODO: handle error
+                            Toast.makeText(
+                                context,
+                                "Password must be match repeat password in else",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 } else {
