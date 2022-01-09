@@ -1,11 +1,13 @@
 package com.wise.studentdelivery.ui
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.wise.studentdelivery.MainActivity
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Address
 import com.wise.studentdelivery.model.Car
@@ -77,7 +79,16 @@ class Signup : AppCompatActivity() {
 
 
         apiServer.addUser(user) {
-            println(user.createdTime)
+            println("$it add user")
+            if (it == true) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            or Intent.FLAG_ACTIVITY_NEW_TASK
+                )
+                startActivity(intent)
+            }
         }
 
 
