@@ -12,16 +12,16 @@ import java.io.File
 
 class RestApiServer {
 
-    fun addUser(userData: User, onResult: (User?) -> Unit) {
+    fun addUser(userData: User, onResult: (Boolean?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addUser(userData).enqueue(
-            object : Callback<User> {
-                override fun onFailure(call: Call<User>, t: Throwable) {
+            object : Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
                     onResult(null)
                     println(t)
                 }
 
-                override fun onResponse(call: Call<User>, response: Response<User>) {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                     val addedUser = response.body()
                     println(response)
                     onResult(addedUser)

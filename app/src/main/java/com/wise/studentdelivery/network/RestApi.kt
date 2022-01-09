@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 interface RestApi {
     @POST("api/v1/users/add")
-    fun addUser(@Body user: User): Call<User>
+    fun addUser(@Body user: User): Call<Boolean>
 
     @POST("api/v1/users/addride/{email}")
     fun addRide(@Body ride: Ride, @Path("email") email: String): Call<User>
