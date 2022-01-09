@@ -58,10 +58,9 @@ class PinCode : Fragment() {
             }
 
             override fun onFinish() {
-                //TODO("Not yet implemented")
                 timerText.text = getString(R.string.pin_expired)
                 isExpired = true
-            //    println(isExpired)
+                println(isExpired)
 
             }
 
