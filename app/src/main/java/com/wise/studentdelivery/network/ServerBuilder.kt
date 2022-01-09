@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ServiceBuilder {
-    private val client = OkHttpClient.Builder().connectTimeout(500,TimeUnit.SECONDS).build()
+    private val client = OkHttpClient.Builder().connectTimeout(1000,TimeUnit.SECONDS).build()
     // to make retrofit to accept all body not only json
     private val gsonBuilder = GsonBuilder().setLenient()
     private val gson: Gson = gsonBuilder.create()
