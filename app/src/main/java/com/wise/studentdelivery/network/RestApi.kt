@@ -12,6 +12,9 @@ interface RestApi {
     @POST("api/v1/users/add")
     fun addUser(@Body user: User): Call<Boolean>
 
+    @POST("api/v1/users/updateuser")
+    fun updateUser(@Body user: User): Call<Boolean>
+
     @POST("api/v1/users/addride/{email}")
     fun addRide(@Body ride: Ride, @Path("email") email: String): Call<User>
 
