@@ -43,7 +43,7 @@
     <string name="private_string">Private</string>
     <string name="price">Price</string>
     <string name="number">Number</string>
-    <string name="information_about_the_ride">Information about the ride</string>
+    <string name="information_about_the_ride">Information about the ride…</string>
     <string-array name="gender_spinner">
         <item>No</item>
         <item>Male only</item>
@@ -98,4 +98,11 @@
     <string name="account_information">Account Information</string>
     <string name="email_to_reset_password">Enter your email to reset your password:</string>
     <string name="check_email_for_pin">Check your email for pin code.</string>
+    <string name="report_text">Write down the problem you\'re facing in the box below. If you want to report a user, please provide their email address.</string>
+    <string name="send">Send</string>
+    <string name="report_hint">Write down the problem here…</string>
+    <string name="authentication">Authentication:</string>
+    <string name="select_image">Select Image</string>
+    <string name="auth_text">You need to take/upload a picture of your Student ID in order to verify your identity.</string>
+    <string name="finish">Finish</string>
 </resources>
