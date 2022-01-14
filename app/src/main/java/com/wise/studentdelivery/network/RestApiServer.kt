@@ -254,5 +254,22 @@ class RestApiServer {
 
     }
 
+    fun sendReport(report:String,onResult: (String?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.sendMailReport(report).enqueue(
+            object :Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val reportMass= response.body()
+                    onResult(reportMass)
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    onResult(null)
+                    println("$t can't send email report massage to admin ")
+                }
+
+            }
+        )
+    }
 
 }

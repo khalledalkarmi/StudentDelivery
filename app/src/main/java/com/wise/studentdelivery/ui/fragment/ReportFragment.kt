@@ -8,17 +8,20 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.network.RestApiServer
 
 
 class ReportFragment : Fragment() {
 
     private lateinit var reportEditText: EditText
     private lateinit var sendButton: Button
-
+    private lateinit var email: String
+    private lateinit var apiServer: RestApiServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        email = requireArguments().getString("email").toString()
+        apiServer = RestApiServer()
     }
 
 
@@ -43,6 +46,13 @@ class ReportFragment : Fragment() {
         sendButton.setOnClickListener {
 
             // TODO: implement upload to server or intent send email to admin
+            if (reportEditText.text.toString().isNotEmpty()) {
+                apiServer.sendReport(report = reportEditText.text.toString()){
+                    if (it.equals("true")){
+                        println(reportEditText.text.toString())
+                    }
+                }
+            }
 
         }
     }

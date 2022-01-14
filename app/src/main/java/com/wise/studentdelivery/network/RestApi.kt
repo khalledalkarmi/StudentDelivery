@@ -54,4 +54,7 @@ interface RestApi {
         @Path("email") email: String,
         @Part image: MultipartBody.Part
     ): Call<Void>
+
+    @GET("api/v1/users/report/{report}")
+    fun sendMailReport(@Path("report") reportBody: String): Call<String>
 }
