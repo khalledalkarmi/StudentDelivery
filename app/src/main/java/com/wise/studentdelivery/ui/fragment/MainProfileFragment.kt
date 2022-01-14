@@ -31,9 +31,10 @@ class MainProfileFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var myRequestButton: Button
     private lateinit var accountSittingButton: Button
-    private lateinit var reportProblemButton: Button
     private lateinit var changePasswordButton: Button
+    private lateinit var reportProblemButton: Button
     private lateinit var profileFragment: ProfileFragment
+    private lateinit var reportFragment: ReportFragment
     private lateinit var setNewPassword: SetNewPassword
     private lateinit var myRide: MyRide
     private lateinit var logOutButton: Button
@@ -46,6 +47,7 @@ class MainProfileFragment : Fragment() {
         apiServer = RestApiServer()
         profileFragment = ProfileFragment()
         setNewPassword = SetNewPassword()
+        reportFragment = ReportFragment()
         myRide = MyRide()
         email = requireArguments().getString("email").toString()
 
@@ -149,6 +151,14 @@ class MainProfileFragment : Fragment() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
 
+        }
+        reportProblemButton.setOnClickListener {
+            parentFragmentManager.commit(){
+                val bundle = bundleOf("email" to email)
+                addToBackStack("reportFragment")
+                reportFragment.arguments = bundle
+                replace(R.id.fragmentContainerViewMainFun, reportFragment)
+            }
         }
     }
 
