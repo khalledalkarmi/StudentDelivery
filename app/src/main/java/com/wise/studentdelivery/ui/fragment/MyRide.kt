@@ -93,15 +93,14 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(it.neighborhoodNAme))
                 emptySeats.setText(it.emptySeats)
                 price.setText(it.price)
-                if (it.genderSpecific.toString() == "MALE")
-                    genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Male only"))
-                else if (it.genderSpecific.toString() == "FEMALE")
-                    genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Female only"))
-                extraDetails.setText(it.extraDetails)
-                if (it.isPrivate == "true")
-                    privateSwitch.isChecked = true
-                else
-                    privateSwitch.isChecked = false
+                if (it.genderSpecific != null) {
+                    if (it.genderSpecific.toString() == "MALE")
+                        genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Male only"))
+                    else if (it.genderSpecific.toString() == "FEMALE")
+                        genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Female only"))
+                    extraDetails.setText(it.extraDetails)
+                }
+                privateSwitch.isChecked = it.isPrivate == "true"
             }
         }
 
