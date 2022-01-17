@@ -4,19 +4,19 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.wise.studentdelivery.MainActivity
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Address
-import com.wise.studentdelivery.model.Car
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
 
-class Signup : AppCompatActivity() {
+class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var firstName: EditText
     private lateinit var lastName: EditText
     private lateinit var studentID: EditText
@@ -28,6 +28,9 @@ class Signup : AppCompatActivity() {
     private lateinit var female: RadioButton
     private lateinit var signUpButton: Button
     private lateinit var genderRadioGroup: RadioGroup
+    private lateinit var uniNameSpinner: Spinner
+    private lateinit var cityNameSpinner: Spinner
+    private lateinit var neighborhoodNameSpinner: Spinner
 
     private val validator = Validator()
 
@@ -45,6 +48,21 @@ class Signup : AppCompatActivity() {
         male = findViewById(R.id.male_radioButton)
         female = findViewById(R.id.female_radioButton)
         genderRadioGroup = findViewById(R.id.gende_rradio_group)
+        uniNameSpinner = findViewById(R.id.spUni)
+        cityNameSpinner = findViewById(R.id.city_spinner)
+        neighborhoodNameSpinner = findViewById(R.id.spNeighborhoods)
+
+        val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
+        val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
+        val neighborhoodNameArrayAdapter = neighborhoodNameSpinner.adapter as ArrayAdapter<String>
+
+        val adapter1 = ArrayAdapter.createFromResource(
+            this,
+            R.array.cities,
+            android.R.layout.simple_spinner_item
+        )
+        cityNameSpinner.adapter = adapter1
+        cityNameSpinner.onItemSelectedListener = this
 
         signUpButton = findViewById(R.id.signup_button)
 
@@ -66,11 +84,11 @@ class Signup : AppCompatActivity() {
             gender = gender,
             email = email.text.toString(),
             phoneNumber = phoneNumber.text.toString(),
-            address = Address("azarqa", "amman"),
+            address = Address(neighborhoodNameSpinner.selectedItem.toString(), cityNameSpinner.selectedItem.toString()),
             createdTime = null,
             graduateYear = "2024",
-            haveCar = Car("BMW", "Green", "400-1203456"),
-            uniName = "JU",
+            haveCar = null,
+            uniName = uniNameSpinner.selectedItem.toString(),
             studentNumber = studentID.text.toString(),
             photo = null,
             ride = null
@@ -123,4 +141,22 @@ class Signup : AppCompatActivity() {
     private fun hashPassword(password: String): String {
         return BCrypt.withDefaults().hashToString(10, password.toCharArray())
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (cityNameSpinner.selectedItem == "عمان") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.amman_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الزرقاء") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.zarqa_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 }
