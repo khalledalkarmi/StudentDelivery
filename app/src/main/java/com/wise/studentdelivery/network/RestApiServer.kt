@@ -85,16 +85,16 @@ class RestApiServer {
         )
     }
 
-    fun addRideByEmail(ride: Ride, email: String, onResult: (User?) -> Unit) {
+    fun addRideByEmail(ride: Ride, email: String, onResult: (String?) -> Unit) {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addRide(ride, email).enqueue(
-            object : Callback<User> {
-                override fun onResponse(call: Call<User>, response: Response<User>) {
+            object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
                     val addRide = response.body()
                     onResult(addRide)
                 }
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
+                override fun onFailure(call: Call<String>, t: Throwable) {
                     onResult(null)
                     println("$t can't add ride")
                 }
