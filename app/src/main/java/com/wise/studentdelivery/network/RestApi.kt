@@ -16,7 +16,7 @@ interface RestApi {
     fun updateUser(@Body user: User): Call<Boolean>
 
     @POST("api/v1/users/addride/{email}")
-    fun addRide(@Body ride: Ride, @Path("email") email: String): Call<User>
+    fun addRide(@Body ride: Ride, @Path("email") email: String): Call<String>
 
     @POST("api/v1/users/updatePassword/{email}/{newPassword}")
     fun updatePassword(
