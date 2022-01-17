@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import com.wise.studentdelivery.MainActivity
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
