@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -85,7 +84,7 @@ class RideView : Fragment() {
                 genderTextview.text = it.gender.toString()
                 uniTextview.text = it.uniName.toString()
                 addressTextview.text =
-                    it.ride?.cityName.toString() + ", " + it.ride?.neighborhoodNAme.toString()
+                    it.ride?.cityName.toString() + ", " + it.ride?.neighborhoodName.toString()
                 phoneTextview.text = it.phoneNumber.toString()
                 emailTextview.text = it.email.toString()
                 goTimeTextview.text = it.ride?.goTime

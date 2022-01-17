@@ -1,15 +1,9 @@
 package com.wise.studentdelivery.ui.compose
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,15 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
@@ -35,9 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Ride
-import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
-import com.wise.studentdelivery.ui.compose.ui.theme.Shapes
 import com.wise.studentdelivery.ui.compose.ui.theme.StudentDeliveryTheme
 import com.wise.studentdelivery.ui.fragment.RideView
 
@@ -123,8 +108,8 @@ class RequestsViewFragment : Fragment() {
     fun RideText(ride: Ride) {
         val rideView = RideView()
         var rideNeighborhood = ""
-        if (ride.neighborhoodNAme != null) {
-            rideNeighborhood = ride.neighborhoodNAme
+        if (ride.neighborhoodName != null) {
+            rideNeighborhood = ride.neighborhoodName
         }
         val rideInfo = String.format(
             "name: ${ride.firstName} ${ride.lastName},\n" +
