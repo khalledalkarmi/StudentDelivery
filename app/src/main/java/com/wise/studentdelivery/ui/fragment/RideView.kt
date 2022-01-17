@@ -98,10 +98,9 @@ class RideView : Fragment() {
         }
 
         callButton.setOnClickListener {
-            val intent = Intent(
-                Intent.ACTION_DIAL,
-                Uri.parse("tel:" + Uri.encode(phoneTextview.toString().trim()))
-            )
+            println("${phoneTextview.text} phone number")
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:" + phoneTextview.text.toString().trim())
             startActivity(intent)
         }
 
