@@ -9,16 +9,14 @@ import androidx.fragment.app.*
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.Ride
+import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.Validator
 
-class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
+class MyRide : Fragment() {
 
     private lateinit var goTme: EditText
     private lateinit var comeBackTime: EditText
-    private lateinit var uniNameSpinner: Spinner
-    private lateinit var cityNameSpinner: Spinner
-    private lateinit var neighborhoodNameSpinner: Spinner
     private lateinit var emptySeats: EditText
     private lateinit var price: EditText
     private lateinit var genderSpecificSpinner: Spinner
@@ -28,11 +26,11 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var apiServer: RestApiServer
     private lateinit var validator: Validator
     private lateinit var email: String
+    private lateinit var user:User
     var firstName = ""
     var lastName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         apiServer = RestApiServer()
 
     }
@@ -58,9 +56,7 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
 
         goTme = view.findViewById(R.id.go_time)
         comeBackTime = view.findViewById(R.id.comeback_time)
-        uniNameSpinner = view.findViewById(R.id.spUni)
-        cityNameSpinner = view.findViewById(R.id.city_spinner)
-        neighborhoodNameSpinner = view.findViewById(R.id.spNeighborhoods)
+
         emptySeats = view.findViewById(R.id.empty_seats)
         price = view.findViewById(R.id.price)
         genderSpecificSpinner = view.findViewById(R.id.genderSpecificSpinner)
@@ -70,27 +66,17 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
 
         validator = Validator()
 
-        val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
-        val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
-        val neighborhoodNameArrayAdapter = neighborhoodNameSpinner.adapter as ArrayAdapter<String>
         val genderSpecificArrayAdapter = genderSpecificSpinner.adapter as ArrayAdapter<String>
 
-        val adapter1 = ArrayAdapter.createFromResource(
-            activity!!,
-            R.array.cities,
-            android.R.layout.simple_spinner_item
-        )
-        cityNameSpinner.adapter = adapter1
-        cityNameSpinner.onItemSelectedListener = this
-
-
+         apiServer.getUserByEmail(email = email){
+             if (it!=null){
+                 user = it
+             }
+         }
         apiServer.getRideByUserEmail(email = email) {
             if (it != null) {
                 goTme.setText(it.goTime)
                 comeBackTime.setText(it.comeBackTime)
-                uniNameSpinner.setSelection(uniNameArrayAdapter.getPosition(it.uniName))
-                cityNameSpinner.setSelection(cityNameArrayAdapter.getPosition(it.cityName))
-                neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(it.neighborhoodNAme))
                 emptySeats.setText(it.emptySeats)
                 price.setText(it.price)
                 if (it.genderSpecific != null) {
@@ -106,9 +92,6 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
 
 
         saveRequest.setOnClickListener {
-            val city = cityNameSpinner.selectedItem.toString()
-            val uniName = uniNameSpinner.selectedItem.toString()
-            val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
             val gender = genderSpecificSpinner.selectedItem.toString()
             var genderSpecific = "No"
             if (gender == "Male only") {
@@ -123,15 +106,15 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
                 lastName = lastName,
                 goTime = goTme.text.toString(),
                 comeBackTime = comeBackTime.text.toString(),
-                cityName = city,
+                cityName = user.address.city,
                 emptySeats = emptySeats.text.toString(),
                 price = price.text.toString(),
                 genderSpecific = genderSpecific,
                 extraDetails = extraDetails.text.toString(),
                 isPrivate = privateSwitch.isChecked.toString(),
-                neighborhoodNAme = neighborhoodName,
-                uniName = uniName,
-                photo = null
+                neighborhoodNAme = user.address.country,
+                uniName = user.uniName,
+                photo = user.photo
             )
 
             apiServer.addRideByEmail(ride, email) {
@@ -141,22 +124,4 @@ class MyRide : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
     }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (cityNameSpinner.selectedItem == "عمان") {
-            val adapter2 = ArrayAdapter.createFromResource(
-                activity!!,
-                R.array.amman_neighborhoods, android.R.layout.simple_spinner_item
-            )
-            neighborhoodNameSpinner.adapter = adapter2
-        } else if (cityNameSpinner.selectedItem == "الزرقاء") {
-            val adapter2 = ArrayAdapter.createFromResource(
-                activity!!,
-                R.array.zarqa_neighborhoods, android.R.layout.simple_spinner_item
-            )
-            neighborhoodNameSpinner.adapter = adapter2
-        }
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
 }
