@@ -1,5 +1,6 @@
 package com.wise.studentdelivery.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
+import com.wise.studentdelivery.ui.MainFunActivity
 import com.wise.studentdelivery.utilities.Validator
 
 class MyRide : Fragment() {
@@ -67,7 +69,6 @@ class MyRide : Fragment() {
         validator = Validator()
 
         val genderSpecificArrayAdapter = genderSpecificSpinner.adapter as ArrayAdapter<String>
-
          apiServer.getUserByEmail(email = email){
              if (it!=null){
                  user = it
@@ -118,8 +119,13 @@ class MyRide : Fragment() {
             )
 
             apiServer.addRideByEmail(ride, email) {
-                if (it != null)
-                    println("${it.firstName} add")
+                if (it != null) {
+                    Toast.makeText(activity,"ride saved successfully",Toast.LENGTH_LONG).show()
+                    println("${ride.firstName} add")
+                    val intent = Intent(activity, MainFunActivity::class.java)
+                    intent.putExtra("email",email)
+                    startActivity(intent)
+                }
             }
 
         }
