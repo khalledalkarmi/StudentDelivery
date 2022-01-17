@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.Signup">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +80,7 @@
             android:id="@+id/first_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="4dp"
             android:autofillHints="name"
             android:ems="10"
             android:hint="@string/first_name"
@@ -88,7 +88,7 @@
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,18 +112,49 @@
             android:id="@+id/signup_button"
             android:layout_width="114dp"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rect_rounded_button"
             android:backgroundTint="@color/grey"
             android:text="@string/signup"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gende_rradio_group"
-            app:layout_constraintVertical_bias="0.526" />
+            app:layout_constraintTop_toBottomOf="@+id/spNeighborhoods" />
+
+        <Spinner
+            android:id="@+id/spUni"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:entries="@array/universities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gende_rradio_group" />
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:entries="@array/cities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spUni" />
+
+        <Spinner
+            android:id="@+id/spNeighborhoods"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:entries="@array/amman_neighborhoods"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_spinner" />
 
         <RadioGroup
             android:id="@+id/gende_rradio_group"
