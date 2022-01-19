@@ -30,6 +30,7 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var uniNameSpinner: Spinner
     private lateinit var cityNameSpinner: Spinner
+    private lateinit var graduateYear: Spinner
     private lateinit var neighborhoodNameSpinner: Spinner
 
     private val validator = Validator()
@@ -38,6 +39,7 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_singup)
+
         firstName = findViewById(R.id.first_name)
         lastName = findViewById(R.id.last_name)
         studentID = findViewById(R.id.student_id)
@@ -86,7 +88,7 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             phoneNumber = phoneNumber.text.toString(),
             address = Address(neighborhoodNameSpinner.selectedItem.toString(), cityNameSpinner.selectedItem.toString()),
             createdTime = null,
-            graduateYear = "2024",
+            graduateYear = graduateYear.selectedItem.toString(),
             uniName = uniNameSpinner.selectedItem.toString(),
             studentNumber = studentID.text.toString(),
             photo = null,
