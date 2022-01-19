@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.model.Car
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
@@ -21,6 +22,9 @@ class MyRide : Fragment() {
     private lateinit var comeBackTime: EditText
     private lateinit var emptySeats: EditText
     private lateinit var price: EditText
+    private lateinit var carNumber: EditText
+    private lateinit var carModel: EditText
+    private lateinit var carColor: EditText
     private lateinit var genderSpecificSpinner: Spinner
     private lateinit var extraDetails: EditText
     private lateinit var privateSwitch: Switch
@@ -28,7 +32,7 @@ class MyRide : Fragment() {
     private lateinit var apiServer: RestApiServer
     private lateinit var validator: Validator
     private lateinit var email: String
-    private lateinit var user:User
+    private lateinit var user: User
     var firstName = ""
     var lastName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,21 +69,26 @@ class MyRide : Fragment() {
         extraDetails = view.findViewById(R.id.extra_details)
         privateSwitch = view.findViewById(R.id.private_switch)
         saveRequest = view.findViewById(R.id.save_request_button)
-
+        carColor = view.findViewById(R.id.car_color)
+        carModel = view.findViewById(R.id.car_model)
+        carNumber = view.findViewById(R.id.car_number)
         validator = Validator()
 
         val genderSpecificArrayAdapter = genderSpecificSpinner.adapter as ArrayAdapter<String>
-         apiServer.getUserByEmail(email = email){
-             if (it!=null){
-                 user = it
-             }
-         }
+        apiServer.getUserByEmail(email = email) {
+            if (it != null) {
+                user = it
+            }
+        }
         apiServer.getRideByUserEmail(email = email) {
             if (it != null) {
                 goTme.setText(it.goTime)
                 comeBackTime.setText(it.comeBackTime)
                 emptySeats.setText(it.emptySeats)
                 price.setText(it.price)
+                carNumber.setText(it.car.carNumber)
+                carModel.setText(it.car.carModel)
+                carColor.setText(it.car.carModel)
                 if (it.genderSpecific != null) {
                     if (it.genderSpecific.toString() == "MALE")
                         genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Male only"))
@@ -115,15 +124,20 @@ class MyRide : Fragment() {
                 isPrivate = privateSwitch.isChecked.toString(),
                 neighborhoodName = user.address.country,
                 uniName = user.uniName,
-                photo = user.photo
+                photo = user.photo,
+                car = Car(
+                    carModel = carModel.text.toString(),
+                    carColor = carColor.text.toString(),
+                    carNumber = carNumber.text.toString()
+                )
             )
 
             apiServer.addRideByEmail(ride, email) {
                 if (it != null) {
-                    Toast.makeText(activity,"ride saved successfully",Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "ride saved successfully", Toast.LENGTH_LONG).show()
                     println("${ride.firstName} add")
                     val intent = Intent(activity, MainFunActivity::class.java)
-                    intent.putExtra("email",email)
+                    intent.putExtra("email", email)
                     startActivity(intent)
                 }
             }
