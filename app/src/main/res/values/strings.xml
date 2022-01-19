@@ -109,4 +109,12 @@
     <string name="car_model">Car Model</string>
     <string name="car_number">Car Number</string>
     <string name="car_details">Car Details:</string>
+
+    <string-array name="graduate_year">
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+    </string-array>
 </resources>
