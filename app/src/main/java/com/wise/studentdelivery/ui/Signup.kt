@@ -87,7 +87,6 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             address = Address(neighborhoodNameSpinner.selectedItem.toString(), cityNameSpinner.selectedItem.toString()),
             createdTime = null,
             graduateYear = "2024",
-            haveCar = null,
             uniName = uniNameSpinner.selectedItem.toString(),
             studentNumber = studentID.text.toString(),
             photo = null,

@@ -73,7 +73,6 @@ class ProfileFragment : Fragment() {
                 createdTime = userOriginalData.createdTime,
                 gender = userOriginalData.gender,
                 graduateYear = userOriginalData.graduateYear,
-                haveCar = userOriginalData.haveCar,
                 password = userOriginalData.password
             )
             apiServer.updateUser(userData = updatedUser){ userUpdated ->
