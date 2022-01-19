@@ -105,4 +105,8 @@
     <string name="select_image">Select Image</string>
     <string name="auth_text">You need to take/upload a picture of your Student ID in order to verify your identity.</string>
     <string name="finish">Finish</string>
+    <string name="car_color">Car Color</string>
+    <string name="car_model">Car Model</string>
+    <string name="car_number">Car Number</string>
+    <string name="car_details">Car Details:</string>
 </resources>
