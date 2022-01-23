@@ -14,6 +14,6 @@ data class Ride(
     val price: String,
     val extraDetails: String,
     val genderSpecific: String,
-    val car: Car,
+    val haveCar: Car,
     val isPrivate: String
 )

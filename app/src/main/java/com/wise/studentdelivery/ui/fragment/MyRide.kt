@@ -86,9 +86,11 @@ class MyRide : Fragment() {
                 comeBackTime.setText(it.comeBackTime)
                 emptySeats.setText(it.emptySeats)
                 price.setText(it.price)
-                carNumber.setText(it.car.carNumber)
-                carModel.setText(it.car.carModel)
-                carColor.setText(it.car.carModel)
+
+                carNumber.setText(it.haveCar.carNumber)
+                carModel.setText(it.haveCar.carModel)
+                carColor.setText(it.haveCar.carColor)
+
                 if (it.genderSpecific != null) {
                     if (it.genderSpecific.toString() == "MALE")
                         genderSpecificSpinner.setSelection(genderSpecificArrayAdapter.getPosition("Male only"))
@@ -109,7 +111,6 @@ class MyRide : Fragment() {
             } else if (gender == "Female only") {
                 genderSpecific = Gender.FEMALE.toString()
             }
-
             val ride: Ride = Ride(
                 email = email,
                 firstName = firstName,
@@ -125,7 +126,7 @@ class MyRide : Fragment() {
                 neighborhoodName = user.address.country,
                 uniName = user.uniName,
                 photo = user.photo,
-                car = Car(
+                haveCar = Car(
                     carModel = carModel.text.toString(),
                     carColor = carColor.text.toString(),
                     carNumber = carNumber.text.toString()
@@ -136,6 +137,8 @@ class MyRide : Fragment() {
                 if (it != null) {
                     Toast.makeText(activity, "ride saved successfully", Toast.LENGTH_LONG).show()
                     println("${ride.firstName} add")
+
+                    println(ride)
                     val intent = Intent(activity, MainFunActivity::class.java)
                     intent.putExtra("email", email)
                     startActivity(intent)
