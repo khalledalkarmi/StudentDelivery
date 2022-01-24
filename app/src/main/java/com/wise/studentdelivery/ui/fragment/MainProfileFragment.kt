@@ -31,7 +31,6 @@ class MainProfileFragment : Fragment() {
     private lateinit var profileImage: ImageView
     private lateinit var changeImageButton: ImageButton
     private lateinit var nameTextView: TextView
-    private lateinit var myRequestButton: Button
     private lateinit var accountSittingButton: Button
     private lateinit var changePasswordButton: Button
     private lateinit var reportProblemButton: Button
@@ -68,7 +67,6 @@ class MainProfileFragment : Fragment() {
         profileImage = view.findViewById(R.id.main_profile_image)
         changeImageButton = view.findViewById(R.id.change_image_button)
         nameTextView = view.findViewById(R.id.name_textview)
-        myRequestButton = view.findViewById(R.id.my_requset)
         accountSittingButton = view.findViewById(R.id.account_information)
         changePasswordButton = view.findViewById(R.id.change_password)
         logOutButton = view.findViewById(R.id.log_out)
@@ -92,14 +90,15 @@ class MainProfileFragment : Fragment() {
             }
         }
 
-        myRequestButton.setOnClickListener {
+        /*myRequestButton.setOnClickListener {
             parentFragmentManager.commit {
                 val bundle = bundleOf("email" to email)
                 myRide.arguments = bundle
                 addToBackStack("myRide")
                 replace(R.id.fragmentContainerViewMainFun, myRide)
             }
-        }
+        }*/
+
         apiServer.getUserByEmail(email) { user ->
             if (user != null) {
                 nameTextView.setText(user.firstName + " " + user.lastName)

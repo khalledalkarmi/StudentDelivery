@@ -80,10 +80,65 @@
         <item>طبربور</item>
         <item>الجبيهة</item>
         <item>الوحدات</item>
+        <item>ابو نصير</item>
+        <item>صويلح</item>
+        <item>تلاع العلي</item>
     </string-array>
     <string-array name="zarqa_neighborhoods">
         <item>حي الاميرة رحمة</item>
         <item>الرصيفة</item>
+        <item>حي النزهة</item>
+        <item>الزرقاء الجديدة</item>
+    </string-array>
+    <string-array name="balqa_neighborhoods">
+        <item>زي</item>
+        <item>عين الباشا</item>
+        <item>ماحص</item>
+    </string-array>
+    <string-array name="aqaba_neighborhoods">
+        <item>الريشة</item>
+        <item>القويرة</item>
+        <item>الديسة</item>
+    </string-array>
+    <string-array name="maan_neighborhoods">
+        <item>الشوبك</item>
+        <item>الجفر</item>
+        <item>البتراء</item>
+    </string-array>
+    <string-array name="madaba_neighborhoods">
+        <item>ماعين</item>
+        <item>مليح</item>
+        <item>ذيبان</item>
+    </string-array>
+    <string-array name="jarash_neighborhoods">
+        <item>برما</item>
+        <item>جرش</item>
+        <item>المصطبة</item>
+    </string-array>
+    <string-array name="ajloun_neighborhoods">
+        <item>عرجان</item>
+        <item>كفرنجة</item>
+        <item>صخرة</item>
+    </string-array>
+    <string-array name="irbid_neighborhoods">
+        <item>الرمثا</item>
+        <item>الصريح</item>
+        <item>الحصن</item>
+        <item>حوارة</item>
+    </string-array>
+    <string-array name="tafila_neighborhoods">
+        <item>الحسا</item>
+        <item>بصيرا</item>
+    </string-array>
+    <string-array name="karak_neighborhoods">
+        <item>القطرانة</item>
+        <item>الصافي</item>
+        <item>المغير</item>
+    </string-array>
+    <string-array name="mafraq_neighborhoods">
+        <item>بلعما</item>
+        <item>المنشية</item>
+        <item>الخالدية</item>
     </string-array>
     <string name="title_activity_requests">RequestsActivity</string>
     <string name="rides">Rides</string>

@@ -53,6 +53,7 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         uniNameSpinner = findViewById(R.id.spUni)
         cityNameSpinner = findViewById(R.id.city_spinner)
         neighborhoodNameSpinner = findViewById(R.id.spNeighborhoods)
+        graduateYear = findViewById(R.id.spinner)
 
         val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
         val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
@@ -154,6 +155,66 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val adapter2 = ArrayAdapter.createFromResource(
                 this,
                 R.array.zarqa_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "البلقاء") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.balqa_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "العقبة") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.aqaba_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "معان") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.maan_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "مادبا") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.madaba_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "جرش") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.jarash_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "عجلون") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.ajloun_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "اربد") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.irbid_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الطفيلة") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.tafila_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الكرك") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.karak_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "المفرق") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.mafraq_neighborhoods, android.R.layout.simple_spinner_item
             )
             neighborhoodNameSpinner.adapter = adapter2
         }
