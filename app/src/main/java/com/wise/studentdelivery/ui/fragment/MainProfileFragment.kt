@@ -3,6 +3,7 @@ package com.wise.studentdelivery.ui.fragment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -19,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.wise.studentdelivery.MainActivity
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.utilities.RealPathUtil
@@ -153,28 +155,54 @@ class MainProfileFragment : Fragment() {
 
         }
         reportProblemButton.setOnClickListener {
-            parentFragmentManager.commit(){
+            parentFragmentManager.commit() {
                 val bundle = bundleOf("email" to email)
                 addToBackStack("reportFragment")
                 reportFragment.arguments = bundle
                 replace(R.id.fragmentContainerViewMainFun, reportFragment)
             }
         }
-    }
+        logOutButton.setOnClickListener {
+            val alertDialog: AlertDialog? = activity?.let {
+                val builder = AlertDialog.Builder(it).setTitle("Do you want to logout?")
+                builder.apply {
+                    setPositiveButton(
+                        "Log out"
+                    ) { dialog, id ->
+                        val intent = Intent(it, MainActivity::class.java)
+                        intent.addFlags(
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    or Intent.FLAG_ACTIVITY_NEW_TASK
+                        )
+                        startActivity(intent)
+                    }
+                    setNegativeButton(
+                        "cancel"
+                    ) { dialog, id ->
+                        dialog.dismiss()
+                    }
+                }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
-            profileImage.setImageURI(data.data)
-            val imageRealPath = RealPathUtil.getRealPath(requireContext().applicationContext,data.data!!)
-            apiServer.setImageByEmail(imageRealPath, email){
-
+                builder.create()
             }
-        } else if (requestCode == REQUEST_IMAGE_CAMERA && resultCode == Activity.RESULT_OK && data != null) {
-            profileImage.setImageBitmap(data.extras?.get("data") as Bitmap)
-        } else {
-            Toast.makeText(activity!!, "Something went wrong", Toast.LENGTH_SHORT).show()
+            alertDialog?.show()
         }
     }
-}
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+
+            if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+                profileImage.setImageURI(data.data)
+                val imageRealPath =
+                    RealPathUtil.getRealPath(requireContext().applicationContext, data.data!!)
+                apiServer.setImageByEmail(imageRealPath, email) {
+
+                }
+            } else if (requestCode == REQUEST_IMAGE_CAMERA && resultCode == Activity.RESULT_OK && data != null) {
+                profileImage.setImageBitmap(data.extras?.get("data") as Bitmap)
+            } else {
+                Toast.makeText(activity!!, "Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
