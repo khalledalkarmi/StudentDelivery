@@ -31,6 +31,9 @@ class RideView : Fragment() {
     private lateinit var genderSpecificTextview: TextView
     private lateinit var detailsTextview: TextView
     private lateinit var callButton: ImageButton
+    private lateinit var carNumberTextView: TextView
+    private lateinit var carModelTextView: TextView
+    private lateinit var carColorTextView: TextView
     private lateinit var email:String
 
     lateinit var apiServer: RestApiServer
@@ -68,6 +71,9 @@ class RideView : Fragment() {
         genderSpecificTextview = view.findViewById(R.id.gender_specific_textview)
         detailsTextview = view.findViewById(R.id.details_textview)
         callButton = view.findViewById(R.id.call_button)
+        carNumberTextView = view.findViewById(R.id.car_number_textview)
+        carModelTextView = view.findViewById(R.id.car_model_textview)
+        carColorTextView = view.findViewById(R.id.car_color_textview)
 
 
         apiServer.getUserByEmail(email = email) {
@@ -93,6 +99,9 @@ class RideView : Fragment() {
                 costTextview.text = it.ride?.price
                 genderSpecificTextview.text = it.ride?.genderSpecific
                 detailsTextview.text = it.ride?.extraDetails
+                carNumberTextView.text = it.ride?.haveCar?.carNumber
+                carModelTextView.text = it.ride?.haveCar?.carModel
+                carColorTextView.text = it.ride?.haveCar?.carColor
             }
         }
 
