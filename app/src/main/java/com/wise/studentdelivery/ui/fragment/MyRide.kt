@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import com.wise.studentdelivery.R
 import com.wise.studentdelivery.model.Car
@@ -33,13 +35,15 @@ class MyRide : Fragment() {
     private lateinit var validator: Validator
     private lateinit var email: String
     private lateinit var user: User
+    private lateinit var mainProfileFragment: MainProfileFragment
     var firstName = ""
     var lastName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer = RestApiServer()
-
+        mainProfileFragment = MainProfileFragment()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +63,16 @@ class MyRide : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+//            parentFragmentManager.commit {
+//                val bundle = bundleOf("email" to email)
+//                setReorderingAllowed(true)
+//                mainProfileFragment.arguments = bundle
+//                replace(R.id.fragmentContainerViewMainFun, mainProfileFragment)
+//            }
+//        }
+
 
         goTme = view.findViewById(R.id.go_time)
         comeBackTime = view.findViewById(R.id.comeback_time)
@@ -132,6 +146,8 @@ class MyRide : Fragment() {
                     carNumber = carNumber.text.toString()
                 )
             )
+
+
 
             apiServer.addRideByEmail(ride, email) {
                 if (it != null) {
