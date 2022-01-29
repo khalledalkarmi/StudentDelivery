@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
             if (checkIfUserExist(email).toString().isNotEmpty()) {
                 apiServer.getUserPassword(email) {
                     println("$it password for $email")
-                    if (BCrypt.verifyer().verify(password.toCharArray(),it.toString()).verified){
+                    //if (BCrypt.verifyer().verify(password.toCharArray(),it.toString()).verified){
+                    if (password==it.toString()){
                         val intent =Intent(this,MainFunActivity::class.java)
                         intent.putExtra("email",email)
                         errorTextView.isVisible = false
