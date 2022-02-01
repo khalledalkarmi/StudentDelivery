@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentDelivery</string>
+    <string name="app_name">Uni-Drive</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="uni_drive">UNI-Drive</string>

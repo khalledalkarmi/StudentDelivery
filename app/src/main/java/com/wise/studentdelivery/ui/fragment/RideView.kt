@@ -99,9 +99,9 @@ class RideView : Fragment() {
                 costTextview.text = it.ride?.price
                 genderSpecificTextview.text = it.ride?.genderSpecific
                 detailsTextview.text = it.ride?.extraDetails
-                carNumberTextView.text = it.ride?.haveCar?.carNumber
-                carModelTextView.text = it.ride?.haveCar?.carModel
-                carColorTextView.text = it.ride?.haveCar?.carColor
+                carNumberTextView.text = "Car Number: "+it.ride?.haveCar?.carNumber
+                carModelTextView.text = "Car Model: "+it.ride?.haveCar?.carModel
+                carColorTextView.text = "Car Color: "+it.ride?.haveCar?.carColor
             }
         }
 

@@ -38,13 +38,14 @@ class BottomNavigationFragment : Fragment() {
         rideNav = view.findViewById(R.id.bottomNavigationView)
         val requestsViewFragment = RequestsViewFragment()
         val mainProfileFragment = MainProfileFragment()
+        val myRide=MyRide()
         rideNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.ride_nav -> {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to email)
                         setReorderingAllowed(true)
-                        addToBackStack("botNav")
+                        addToBackStack("requestsViewFragment")
                         requestsViewFragment.arguments = bundle
                         replace(R.id.fragmentContainerViewMain, requestsViewFragment)
                     }
@@ -53,10 +54,21 @@ class BottomNavigationFragment : Fragment() {
                     parentFragmentManager.commit {
                         val bundle = bundleOf("email" to email)
                         setReorderingAllowed(true)
-                        addToBackStack("botNav")
+                        addToBackStack("mainProfileFragment")
                         println("email in nav bot $email")
                         mainProfileFragment.arguments = bundle
                         replace(R.id.fragmentContainerViewMain, mainProfileFragment)
+                    }
+                }
+
+                R.id.myride_nav -> {
+                    parentFragmentManager.commit {
+                        val bundle = bundleOf("email" to email)
+                        setReorderingAllowed(true)
+                        addToBackStack("myRide")
+                        println("email in nav bot $email")
+                        myRide.arguments = bundle
+                        replace(R.id.fragmentContainerViewMain, myRide)
                     }
                 }
             }

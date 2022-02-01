@@ -83,7 +83,7 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val user = User(
             firstName = firstName.text.toString(),
             lastName = lastName.text.toString(),
-            password = hashPassword(password.text.toString()),
+            password = password.text.toString(),
             gender = gender,
             email = email.text.toString(),
             phoneNumber = phoneNumber.text.toString(),
@@ -100,17 +100,27 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         apiServer.addUser(user) {
             println("$it add user")
-            if (it == true) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            or Intent.FLAG_ACTIVITY_NEW_TASK
-                )
-                startActivity(intent)
+            when (it) {
+                "true" -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                or Intent.FLAG_ACTIVITY_NEW_TASK
+                    )
+                    startActivity(intent)
+                }
+                "emailDup" -> {
+                    email.error = "email already been taken"
+                }
+                "phoneNumberDup" -> {
+                    phoneNumber.error = "Phone number unavailable"
+                }
+                "studentNumberDup" -> {
+                    studentID.error = "Student ID unavailable"
+                }
             }
         }
-
 
     }
 
