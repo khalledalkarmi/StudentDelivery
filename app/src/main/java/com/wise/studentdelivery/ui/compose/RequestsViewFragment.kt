@@ -82,7 +82,6 @@ class RequestsViewFragment : Fragment() {
                         RideText(ride = ride)
                 }
                 // Image(email = ride.email)
-
             }
         }
     }
@@ -112,13 +111,13 @@ class RequestsViewFragment : Fragment() {
             rideNeighborhood = ride.neighborhoodName
         }
         val rideInfo = String.format(
-            "name: ${ride.firstName} ${ride.lastName},\n" +
-                    "from: ${ride.cityName}, $rideNeighborhood \n" +
-                    "to: ${ride.uniName}, \n" +
-                    "go time: ${ride.goTime}, \n" +
-                    "back time ${ride.comeBackTime}, \n" +
-                    "empty seats: ${ride.emptySeats}, \n" +
-                    "price: ${ride.price} JD"
+            "Name: ${ride.firstName} ${ride.lastName} \n" +
+                    "From: ${ride.cityName}, $rideNeighborhood \n" +
+                    "To: ${ride.uniName} \n" +
+                    "Go time: ${ride.goTime} \n" +
+                    "Comeback time ${ride.comeBackTime} \n" +
+                    "Empty seats: ${ride.emptySeats} \n" +
+                    "Cost: ${ride.price} JD"
         )
         Text(
             fontSize = 18.sp,
@@ -138,6 +137,4 @@ class RequestsViewFragment : Fragment() {
                 }
         )
     }
-
-
 }

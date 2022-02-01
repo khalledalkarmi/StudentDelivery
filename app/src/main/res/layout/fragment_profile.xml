@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ProfileFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <Spinner
+        android:id="@+id/neighborhood_name_spinner"
+        android:layout_width="201dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:entries="@array/amman_neighborhoods"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_name_spinner" />
 
     <EditText
         android:id="@+id/phone_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:autofillHints="phone"
         android:ems="10"
         android:hint="@string/phone_number"
@@ -26,14 +40,14 @@
         android:id="@+id/email_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:autofillHints="emailAddress"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lname_edittext"
         tools:ignore="TextContrastCheck" />
@@ -42,43 +56,69 @@
         android:id="@+id/fname_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="72dp"
+        android:autofillHints="first name"
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck"
-        android:autofillHints="first name" />
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/lname_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
+        android:autofillHints="last name"
         android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fname_edittext"
-        tools:ignore="TextContrastCheck"
-        android:autofillHints="last name" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rect_rounded_button"
         android:backgroundTint="@color/grey"
         android:text="@string/save"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neighborhood_name_spinner" />
+
+    <Spinner
+        android:id="@+id/uni_name_spinner"
+        android:layout_width="201dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:entries="@array/universities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_edittext" />
+
+    <Spinner
+        android:id="@+id/city_name_spinner"
+        android:layout_width="201dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:entries="@array/cities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uni_name_spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
