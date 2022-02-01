@@ -12,7 +12,9 @@ import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.MainFunActivity
 
-class ProfileFragment : Fragment() {
+//TODO: implement upload to server & view from server
+
+class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var firstNameEdit: EditText
@@ -23,11 +25,14 @@ class ProfileFragment : Fragment() {
     private lateinit var apiServer: RestApiServer
     private lateinit var email: String
     private lateinit var userOriginalData: User
+    private lateinit var uniNameSpinner: Spinner
+    private lateinit var cityNameSpinner: Spinner
+    private lateinit var neighborhoodNameSpinner: Spinner
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         apiServer = RestApiServer()
 
-        //TODO: add scrollView
 
     }
 
@@ -49,6 +54,10 @@ class ProfileFragment : Fragment() {
         emailEdit = view.findViewById(R.id.email_edittext)
         phoneNumEdit = view.findViewById(R.id.phone_edittext)
         saveButton = view.findViewById(R.id.save_button)
+        uniNameSpinner = view.findViewById(R.id.uni_name_spinner)
+        cityNameSpinner = view.findViewById(R.id.city_name_spinner)
+        neighborhoodNameSpinner = view.findViewById(R.id.neighborhood_name_spinner)
+
 
         apiServer.getUserByEmail(email) { user ->
             if (user != null) {
@@ -93,8 +102,84 @@ class ProfileFragment : Fragment() {
                         startActivity(intent)
                     }
                 }
-
             }
         }
     }
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (cityNameSpinner.selectedItem == "عمان") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.amman_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الزرقاء") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.zarqa_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "البلقاء") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.balqa_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "العقبة") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.aqaba_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "معان") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.maan_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "مادبا") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.madaba_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "جرش") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.jarash_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "عجلون") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.ajloun_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "اربد") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.irbid_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الطفيلة") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.tafila_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "الكرك") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.karak_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        } else if (cityNameSpinner.selectedItem == "المفرق") {
+            val adapter2 = ArrayAdapter.createFromResource(
+                activity!!,
+                R.array.mafraq_neighborhoods, android.R.layout.simple_spinner_item
+            )
+            neighborhoodNameSpinner.adapter = adapter2
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 }
