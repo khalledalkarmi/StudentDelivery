@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
 import com.wise.studentdelivery.ui.MainFunActivity
@@ -58,6 +59,17 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
         cityNameSpinner = view.findViewById(R.id.city_name_spinner)
         neighborhoodNameSpinner = view.findViewById(R.id.neighborhood_name_spinner)
 
+        val uniNameArrayAdapter = uniNameSpinner.adapter as ArrayAdapter<String>
+        val cityNameArrayAdapter = cityNameSpinner.adapter as ArrayAdapter<String>
+        val neighborhoodNameArrayAdapter = neighborhoodNameSpinner.adapter as ArrayAdapter<String>
+        val adapter1 = ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.cities,
+            android.R.layout.simple_spinner_item
+        )
+        cityNameSpinner.adapter = adapter1
+        cityNameSpinner.onItemSelectedListener = this
+
 
         apiServer.getUserByEmail(email) { user ->
             if (user != null) {
@@ -66,9 +78,15 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 lastNameEdit.setText(user.lastName)
                 emailEdit.setText(user.email)
                 phoneNumEdit.setText(user.phoneNumber)
+                uniNameSpinner.setSelection(uniNameArrayAdapter.getPosition(user.uniName))
+                cityNameSpinner.setSelection(cityNameArrayAdapter.getPosition(user.address.city))
+                neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(user.address.country))
             }
         }
         saveButton.setOnClickListener {
+            val city = cityNameSpinner.selectedItem.toString()
+            val uniName = uniNameSpinner.selectedItem.toString()
+            val neighborhoodName = neighborhoodNameSpinner.selectedItem.toString()
             val updatedUser = User(
                 firstName = firstNameEdit.text.toString(),
                 lastName = lastNameEdit.text.toString(),
