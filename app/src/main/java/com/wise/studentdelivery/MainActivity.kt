@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.wise.studentdelivery.network.RestApiServer
@@ -25,10 +26,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var loginButton: Button
     private lateinit var apiServer: RestApiServer
+    private lateinit var test:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        test = findViewById(R.id.test_b)
         email = findViewById(R.id.email_text)
         password = findViewById(R.id.password_text)
         loginButton = findViewById(R.id.login_button)
@@ -40,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         signupButton.setOnClickListener{
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
+        }
+
+        test.setOnClickListener {
+            Toast.makeText(this,"tsest",Toast.LENGTH_LONG).show()
         }
 
         loginButton.setOnClickListener {

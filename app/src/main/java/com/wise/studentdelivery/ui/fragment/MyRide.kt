@@ -137,7 +137,8 @@ class MyRide : Fragment() {
                 genderSpecific = genderSpecific,
                 extraDetails = extraDetails.text.toString(),
                 isPrivate = privateSwitch.isChecked.toString(),
-                neighborhoodName = user.address.country,
+                neighborhoodName = user.address.neighborhood
+                ,
                 uniName = user.uniName,
                 photo = user.photo,
                 haveCar = Car(

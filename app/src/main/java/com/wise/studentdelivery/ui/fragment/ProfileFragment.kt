@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.wise.studentdelivery.R
+import com.wise.studentdelivery.model.Address
 import com.wise.studentdelivery.model.Ride
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
@@ -80,7 +81,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 phoneNumEdit.setText(user.phoneNumber)
                 uniNameSpinner.setSelection(uniNameArrayAdapter.getPosition(user.uniName))
                 cityNameSpinner.setSelection(cityNameArrayAdapter.getPosition(user.address.city))
-                neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(user.address.country))
+                neighborhoodNameSpinner.setSelection(neighborhoodNameArrayAdapter.getPosition(user.address.city))
             }
         }
         saveButton.setOnClickListener {
@@ -93,17 +94,17 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 email = emailEdit.text.toString(),
                 phoneNumber = phoneNumEdit.text.toString(),
                 photo = userOriginalData.photo,
-                uniName = userOriginalData.uniName,
-                ride = userOriginalData.ride,
+                uniName = uniName,
+                ride =Ride(email = userOriginalData.email,neighborhoodName=neighborhoodName,haveCar = userOriginalData.ride!!.haveCar,uniName = uniName,photo = userOriginalData.photo,lastName = userOriginalData.lastName,firstName = userOriginalData.firstName,goTime = userOriginalData.ride!!.goTime,comeBackTime = userOriginalData.ride!!.comeBackTime,cityName = city,emptySeats = userOriginalData.ride!!.emptySeats,isPrivate = userOriginalData.ride!!.isPrivate,price = userOriginalData.ride!!.price,extraDetails = userOriginalData.ride!!.extraDetails,genderSpecific = userOriginalData.ride!!.genderSpecific),
                 studentNumber = userOriginalData.studentNumber,
-                address = userOriginalData.address,
+                address = Address(neighborhood = neighborhoodName, city = city),
                 createdTime = userOriginalData.createdTime,
                 gender = userOriginalData.gender,
                 graduateYear = userOriginalData.graduateYear,
                 password = userOriginalData.password
             )
-            apiServer.updateUser(userData = updatedUser){ userUpdated ->
-                if (userUpdated == true){
+            apiServer.updateUser(userData = updatedUser) { userUpdated ->
+                if (userUpdated == true) {
                     Toast.makeText(
                         context,
                         "User Information updated",
@@ -111,7 +112,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     ).show()
                     activity?.let {
                         val intent = Intent(it, MainFunActivity::class.java)
-                        intent.putExtra("email",email)
+                        intent.putExtra("email", email)
                         intent.addFlags(
                             Intent.FLAG_ACTIVITY_CLEAR_TOP
                                     or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -123,6 +124,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
     }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (cityNameSpinner.selectedItem == "عمان") {
             val adapter2 = ArrayAdapter.createFromResource(

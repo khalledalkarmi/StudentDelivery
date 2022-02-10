@@ -29,6 +29,8 @@
         <activity
             android:name=".ui.MainFunActivity"
             android:exported="false" />
+        <activity android:name=".ui.fragment.AuthenticationFragment"
+            android:exported="false"/>
         <activity
             android:name=".ui.ForgotPassword"
             android:exported="false" />

@@ -118,4 +118,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/uni_drive_logo"
         tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/test_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="146dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/forget_password_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

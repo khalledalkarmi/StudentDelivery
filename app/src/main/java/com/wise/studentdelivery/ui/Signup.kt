@@ -14,6 +14,7 @@ import com.wise.studentdelivery.model.Address
 import com.wise.studentdelivery.model.Gender
 import com.wise.studentdelivery.model.User
 import com.wise.studentdelivery.network.RestApiServer
+import com.wise.studentdelivery.ui.fragment.AuthenticationFragment
 import com.wise.studentdelivery.utilities.Validator
 
 class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -102,12 +103,13 @@ class Signup : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             println("$it add user")
             when (it) {
                 "true" -> {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, AuthenticationFragment::class.java)
                     intent.addFlags(
                         Intent.FLAG_ACTIVITY_CLEAR_TOP
                                 or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 or Intent.FLAG_ACTIVITY_NEW_TASK
                     )
+                    intent.putExtra("email" , user.email)
                     startActivity(intent)
                 }
                 "emailDup" -> {

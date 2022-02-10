@@ -55,6 +55,16 @@ interface RestApi {
         @Part image: MultipartBody.Part
     ): Call<Void>
 
+    @POST("api/v1/users/addidimage/{email}")
+    @Multipart
+    fun setIdImage(
+        @Path("email") email: String,
+        @Part image: MultipartBody.Part
+    ): Call<Boolean>
+
     @GET("api/v1/users/report/{report}")
     fun sendMailReport(@Path("report") reportBody: String): Call<String>
+
+    @GET("api/v1/users/getridebyuni/{uni}")
+    fun getRideByUni(@Path("uni") uni:String):Call<List<Ride>>
 }
